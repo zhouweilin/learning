@@ -18,8 +18,8 @@ javascript的数据类型分为两类：`原始类型`（primitive type）和`�
   * Number     （数值对象）
   * Date       （日期对象）
   * RegExp     （正则对象）
-  * Math    　 （数学对象）
+  * Math    　 （数学对象）  
 
-3.  Javascript变量是无类型的（untyped），变量可以被赋予任何类型的值，同样的一个变量也可以重新赋予不同类型的值。不在任何函数内声明的变量
+Javascript变量是无类型的（untyped），变量可以被赋予任何类型的值，同样的一个变量也可以重新赋予不同类型的值。不在任何函数内声明的变量
   被称做全局变量（global　variable），它在javascript程序中的任何地方都是课件的。在函数内声明的变量具有函数作用域（function scope），并且
 　只在函数内课件。
