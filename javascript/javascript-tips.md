@@ -1,4 +1,3 @@
-###作用域
 ####1. 以下代码将会打印出什么
 ```javascript
 (function(){
@@ -44,7 +43,7 @@ function multTable(){
   }
 }
 ```
-#####5. 数组去重
+####5. 数组去重
 * 方法一：
 ```javascript
 function unique(arr){
