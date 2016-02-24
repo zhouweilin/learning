@@ -44,7 +44,36 @@ function multTable(){
   }
 }
 ```
+#####5. 数组去重
+* 方法一：
+```javascript
+function unique(arr){
+  let newArr = [];
+  newArr[0] = arr[0];
+  for(let i = 1; i < arr.length; i++){
+    if(!newArr.some(item) => item === arr[i])) newArr.push(arr[i]);
+  }
+  return newArr;
+}
+```
+* 方法二：
+```javascript
+function unique(arr){
+  let newArr = [];
+  newArr[0] = arr[0];
+  for(var i = 1; i < arr.length; i++){
+    if(compare(newArr, arr[i])) newArr.push(arr[i]);
+  }
 
+}
 
+function compare(arr, val){
+  var bool = true;
+  for(var i = 0; i < arr.length; i++){
+    if(arr[i] === val) return bool = false;
+  }
+  return bool;
+}
+```
 
     
