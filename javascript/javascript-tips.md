@@ -51,7 +51,7 @@ function unique(arr){
   let newArr = [];
   newArr[0] = arr[0];
   for(let i = 1; i < arr.length; i++){
-    if(!newArr.some(item) => item === arr[i])) newArr.push(arr[i]);
+    if(!newArr.some(item) => item === arr[i])) newArr.push(arr[i]);  //使用原生的Array.some()方法
   }
   return newArr;
 }
@@ -64,9 +64,9 @@ function unique(arr){
   for(var i = 1; i < arr.length; i++){
     if(compare(newArr, arr[i])) newArr.push(arr[i]);
   }
-
 }
 
+//遍历arr中的每一个值，看是否有与val相等的值
 function compare(arr, val){
   var bool = true;
   for(var i = 0; i < arr.length; i++){
