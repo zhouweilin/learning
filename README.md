@@ -1,2 +1,2 @@
 # learning
-Learning note about techs
+Learning note about web techs
