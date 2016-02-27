@@ -74,5 +74,19 @@ function compare(arr, val){
   return bool;
 }
 ```
-
+####6.去除字符串两边的空格
+```javascript
+function trim(str){
+  var reg = /^\s+|\s+$/g;
+  return str.replace(reg, '');
+}
+```
+####7.获取两个整数间的随机整数
+```javascript
+function getRandom(min, max){
+  var range = max -min,
+      random = Math.random();
+  return min + Math.round(random * range);
+}
+```
     
