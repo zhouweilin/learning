@@ -89,4 +89,18 @@ function getRandom(min, max){
   return min + Math.round(random * range);
 }
 ```
-    
+####8.rgb色值转换成16进制色值表示，如rgb(0,0,0) -> #000000
+```javascript
+function rgbTohex(rgb){
+  let st = rgb.replace(/\s/g, ''),
+      reg = /^rgb|\(|\)/g,
+      arr = st.replace(reg, '').split(',');
+  arr = arr.map(function(item, index){
+    let numStr = parseInt(item).toString(16);
+    return numStr = numStr.length === 1 ? `0${numStr}` : numStr;
+  });    
+  return `#${arr.join('')}`;
+}
+```
+
+
