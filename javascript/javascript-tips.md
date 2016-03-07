@@ -66,6 +66,14 @@ function unique(arr){
     if(compare(newArr, arr[i])) newArr.push(arr[i]);
   }
 }
+//遍历arr中的每一个值，看是否有与val相等的值
+function compare(arr, val){
+  var bool = true;
+  for(var i = 0; i < arr.length; i++){
+    if(arr[i] === val) return bool = false;
+  }
+  return bool;
+}
 ```
 * 方法三: 利用扩展运算符__(...)__ 和 __Set__
 
@@ -78,16 +86,6 @@ var newArr = [...new Set(arr)];
 ```javascript
 function unique(arr){
   return Array.from(new Set(arr));
-}
-```
-
-//遍历arr中的每一个值，看是否有与val相等的值
-function compare(arr, val){
-  var bool = true;
-  for(var i = 0; i < arr.length; i++){
-    if(arr[i] === val) return bool = false;
-  }
-  return bool;
 }
 ```
 ####6.去除字符串两边的空格
