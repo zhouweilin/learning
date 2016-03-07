@@ -45,6 +45,7 @@ function multTable(){
 ```
 ####5. 数组去重
 * 方法一：
+
 ```javascript
 function unique(arr){
   let newArr = [];
@@ -56,6 +57,7 @@ function unique(arr){
 }
 ```
 * 方法二：
+
 ```javascript
 function unique(arr){
   let newArr = [];
@@ -64,6 +66,20 @@ function unique(arr){
     if(compare(newArr, arr[i])) newArr.push(arr[i]);
   }
 }
+```
+* 方法三: 利用扩展运算符__(...)__ 和 __Set__
+
+```javascript
+var newArr = [...new Set(arr)];
+```
+
+* 方法四：利用__Array.from__函数 和 __Set__
+
+```javascript
+function unique(arr){
+  return Array.from(new Set(arr));
+}
+```
 
 //遍历arr中的每一个值，看是否有与val相等的值
 function compare(arr, val){
