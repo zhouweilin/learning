@@ -102,5 +102,27 @@ function rgbTohex(rgb){
   return `#${arr.join('')}`;
 }
 ```
+####9.不使用循环语句和遍历函数，逐个输出数组的每个元素
+* 方法一:
+
+```javascript
+function showItem(arr){
+  if(arr.length){
+    console.log(arr.pop());
+    showItem(arr);
+  }
+}
+```
+* 方法二：
+
+```javascript
+  var a = 0;
+  function showItem(arr){
+    if(a < arr.length){
+      console.log(arr[a]);
+      showItem(arr);
+    }
+  }
+```
 
 
