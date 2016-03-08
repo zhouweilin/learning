@@ -1,5 +1,5 @@
-##No1. Set/WeakSet, Map/WeakMap
-###1. Set
+###No1. Set
+####1. Set
   Set是ES6的新的数据结构，与数组类似，但其元素都是唯一的、不重复的。通过 `new Set(param)`来构造一个Set的对象
 * __Set的属性__
 >  * Set.prototype.constructor     //构造函数Set()函数
@@ -17,6 +17,3 @@
 >    * Set.prototype.entries()                  //返回一个包含Set key and value 的遍历器
 >    * Set.prototype.forEach(callback)          //通过回调函数遍历每个成员
 
-2. WeakSet
-3. Map
-4. WeakMap
