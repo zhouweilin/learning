@@ -3,6 +3,7 @@
 * [JavaScript 标准参考教程 ---- 阮一峰](http://javascript.ruanyifeng.com/advanced/ecmascript6.html)
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 * [JSCS — JavaScript Code Style](http://jscs.info/)
+* [How Browsers Work: Behind the scenes of modern web browsers](http://www.html5rocks.com/en/tutorials/internals/howbrowserswork/)
 
 
 ##Blogs
