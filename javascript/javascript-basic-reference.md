@@ -1,7 +1,7 @@
 ### Browser compatibility
 #### No.1 addEventListener & attachEvent(IE8- only)
 
-**addEventListener**  
+* addEventListener
 ```javscript
 ele.addEventListener(type, listener, useCapture)   
 type: string               //不含'on',如：click, mousedown   
@@ -10,7 +10,7 @@ useCapture: bool
 ```
 可以使用 `removeEventListener(type, listener, useCapture)` 来移除事件的绑定
 
-**attachEvent**
+* attachEvent
 ```javscript
 ele.attachEvent(type, listener)  
 type: string               //需要加上'on', 如：onclick, onmousedown   
