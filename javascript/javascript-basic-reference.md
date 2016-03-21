@@ -21,4 +21,18 @@ listener: function         //事件发生时执行的函数
 
 #### No.2 event.pageX(在IE8- 下为undefined), event.screenX , event.clientX
 在*IE8-*以下 `event.pageX`为 `undefined`，在*IE8*下`event.screenX - event.clientX = 2`，其他情况下    
-`pageX = screenX = clientX` ，所以选`clientX`为佳
+`pageX = screenX = clientX` ，所以选`clientX`为佳  
+
+#### No.3 window.scrollY/window.pageYOffset/document.documentElement.scrollTop
+```javascript
+window.scrollY         //IE不支持
+window.pageYOffset     //IE7,8   不支持
+document.body.parentNode.scrollTop & document.documentElement.scrollTop  //chrome,edge 不支持 IE,FF支持
+document.body.scrollTop  //chrome,edge支持，IE,FF不支持
+```
+兼容各浏览器的写法  
+
+```javascript
+var scrollY = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.body || document.documentElement || document.body.parentNode).scrollTop;
+```
+
