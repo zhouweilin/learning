@@ -1,5 +1,5 @@
 ### Browser compatibility
-#### No.1 addEventListener & attachEvent(IE8- only)
+#### 1 addEventListener & attachEvent(IE8- only)
 
 * addEventListener
 ```javscript
@@ -19,11 +19,11 @@ listener: function         //事件发生时执行的函数
 可以使用 `detachEvent(type, listener)` 来移除事件绑定  
 
 
-#### No.2 event.pageX(在IE8- 下为undefined), event.screenX , event.clientX
+#### 2 event.pageX(在IE8- 下为undefined), event.screenX , event.clientX
 在*IE8-*以下 `event.pageX`为 `undefined`，在*IE8*下`event.screenX - event.clientX = 2`，其他情况下    
 `pageX = screenX = clientX` ，所以选`clientX`为佳  
 
-#### No.3 window.scrollY/window.pageYOffset/document.documentElement.scrollTop
+#### 3 window.scrollY/window.pageYOffset/document.documentElement.scrollTop
 ```javascript
 window.scrollY         //IE不支持
 window.pageYOffset     //IE7,8   不支持
