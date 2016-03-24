@@ -18,4 +18,4 @@ Learning note about web techs
 
 
 ###web资源
-*[DevDocs(各种语言的开发文档)](http://devdocs.io/)
+* [DevDocs(各种语言的开发文档)](http://devdocs.io/)
