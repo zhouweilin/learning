@@ -14,3 +14,8 @@ Learning note about web techs
 ###前端资源
 * html5/css3效果
   * [单页面切换](http://www.17sucai.com/preview/118194/2015-06-27/secret-project/index.html) 
+
+
+
+###web资源
+*[DevDocs(各种语言的开发文档)](http://devdocs.io/)
