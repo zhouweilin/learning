@@ -1,9 +1,6 @@
 # learning
 Learning note about web techs
 
-###Content
-1. [web测速工具](#web测速工具)
-2. [hibridapp 开发框架](#hibridapp 开发框架)
 ###web测速工具
 * [奇云测](http://ce.cloud.360.cn/)
 * [卡卡网](http://www.webkaka.com/webCheck.aspx)
