@@ -43,3 +43,8 @@ Learning note about web techs
 ###组织或个人
 * [AM - 支付宝无线Web开放解决方案](http://am-team.github.io/about/about.html)
 * [腾讯移动Web前端知识库](https://github.com/AlloyTeam/Mars)
+* 
+
+###架构
+* [架构的本质](http://kb.cnblogs.com/page/540632/)
+* [架构漫谈（一）：什么是架构？](http://kb.cnblogs.com/page/539160/)
