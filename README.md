@@ -4,6 +4,7 @@ Learning note about web techs
 ###web测速工具
 * [奇云测](http://ce.cloud.360.cn/)
 * [卡卡网](http://www.webkaka.com/webCheck.aspx)
+* [gtmetrix](https://gtmetrix.com/)
 
 ###hibridapp 开发框架
 1. [DCloud](http://dcloud.io/runtime.html)
@@ -23,6 +24,7 @@ Learning note about web techs
 * [CSDN web知识库](http://lib.csdn.net/)
 * [mobileTech-移动端开发所资源/技巧](https://github.com/jtyjty99999/mobileTech)
 * [移动web资源整理](http://www.cnblogs.com/PeunZhang/p/3407453.html)
+* [MVC，MVP 和 MVVM 的图示](http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html)
 
 ###web性能
 * [Web性能优化系列（1）：Web性能优化分析](http://web.jobbole.com/82297/)
@@ -35,7 +37,8 @@ Learning note about web techs
 * [JavaScript 性能优化杀手](http://web.jobbole.com/83582/)
 * [JavaScript性能优化小知识总结](http://web.jobbole.com/82381/)
 * [Javascript 异步加载详解](http://www.cnblogs.com/tiwlin/archive/2011/12/26/2302554.html)
-* 
+* [高效Web前端编程实践](http://slides.com/mos/high-performance-web-programming-guide/fullscreen#/)
+* [关于web页面性能测量指标与建议](http://www.cnblogs.com/Javame/p/4398838.html)
 
 ###组织或个人
 * [AM - 支付宝无线Web开放解决方案](http://am-team.github.io/about/about.html)
