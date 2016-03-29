@@ -48,3 +48,14 @@ Learning note about web techs
 ###架构
 * [架构的本质](http://kb.cnblogs.com/page/540632/)
 * [架构漫谈（一）：什么是架构？](http://kb.cnblogs.com/page/539160/)
+
+
+###requireJS & seaJS
+* [让我们再聊聊浏览器资源加载优化](http://qingbob.com/let-us-talk-about-resource-load/)
+* [让我们再聊聊浏览器资源加载优化](http://www.infoq.com/cn/articles/browser-resource-loading-optimization)
+* [SeaJS与RequireJS最大的区别](https://www.douban.com/note/283566440/)
+* [AMD 的 CommonJS wrapping](https://imququ.com/post/amd-simplified-commonjs-wrapping.html)
+* [RequireJS和SeaJS区别？AMD 和 CMD 的区别有哪些](http://camnpr.com/javascript/requirejs-seajs-amd-cmd.html)
+* [LABjs、RequireJS、SeaJS 哪个最好用？为什么？](http://www.zhihu.com/question/20342350)
+
+
