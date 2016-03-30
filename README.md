@@ -61,3 +61,9 @@ Learning note about web techs
 ###MVVM
 * [reactjs](https://facebook.github.io/react/docs/getting-started.html)
 * [react native](https://facebook.github.io/react-native/)
+
+###git
+* [GitBook Documentation](http://help.gitbook.com/index.html)
+
+###MarkDown
+* [Markdown——入门指南](http://www.jianshu.com/p/1e402922ee32)
