@@ -66,3 +66,8 @@ Learning note about web techs
 
 ###MarkDown
 * [Markdown——入门指南](http://www.jianshu.com/p/1e402922ee32)
+
+
+###webpack & browerify
+* [Webpack 怎么用](https://segmentfault.com/a/1190000002552008)
+* [webpack-howto](https://github.com/petehunt/webpack-howto#7-multiple-entrypoints)
