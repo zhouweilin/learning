@@ -58,4 +58,6 @@ Learning note about web techs
 * [RequireJS和SeaJS区别？AMD 和 CMD 的区别有哪些](http://camnpr.com/javascript/requirejs-seajs-amd-cmd.html)
 * [LABjs、RequireJS、SeaJS 哪个最好用？为什么？](http://www.zhihu.com/question/20342350)
 
-
+###MVVM
+* [reactjs](https://facebook.github.io/react/docs/getting-started.html)
+* [react native](https://facebook.github.io/react-native/)
