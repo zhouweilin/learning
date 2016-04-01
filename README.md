@@ -56,7 +56,7 @@ Learning note about web techs
 * [AMD 的 CommonJS wrapping](https://imququ.com/post/amd-simplified-commonjs-wrapping.html)
 * [RequireJS和SeaJS区别？AMD 和 CMD 的区别有哪些](http://camnpr.com/javascript/requirejs-seajs-amd-cmd.html)
 * [LABjs、RequireJS、SeaJS 哪个最好用？为什么？](http://www.zhihu.com/question/20342350)
-* [](http://blog.3gcnbeta.com/2014/05/27/为什么我推荐requirejs-而不是seajs/)
+* [为什么我推荐requirejs 而不是seajs](http://blog.3gcnbeta.com/2014/05/27/为什么我推荐requirejs-而不是seajs/)
 
 ###MVVM
 * [reactjs](https://facebook.github.io/react/docs/getting-started.html)
