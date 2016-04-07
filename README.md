@@ -4,6 +4,7 @@ Learning note about web techs
 ###基础知识
 * [关于js的较冷的知识点](http://blog.csdn.net/cwzhsi/article/details/47806123)
 * [Type detection](http://javascript.info/tutorial/type-detection)
+* [kangax 的javascript谜题](http://www.cnblogs.com/rubylouvre/archive/2010/02/13/1667565.html)
 
 ###hibridapp 开发框架
 1. [DCloud](http://dcloud.io/runtime.html)
