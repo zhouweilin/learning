@@ -154,11 +154,13 @@ typeof g();  //输出什么
 > "string"
 
 ####11
+
 ```javascript
   (function(foo){
     return typeof foo.bar;
   })({ foo: { bar: 1 } });
 ```
+
 > 解析：   
 > 分解一下   
 > var bb = { foo: { bar: 1 } }     
@@ -166,7 +168,8 @@ typeof g();  //输出什么
 > return typeof j.bar    
 > })(bb)    
 > "undefined"   
-> 注意那个对象只有foo属性，没有bar属性  
+> 注意那个对象只有foo属性，没有bar属性 
+
 ####12
 ```javascript
 (function f(){
@@ -178,7 +181,9 @@ typeof g();  //输出什么
 > 解析：
 > 函数声明会在预编译阶段被提前   
 > 2
+
 ####13
+
 ```javascript
 
 function f(){ return f; }
@@ -186,6 +191,7 @@ function f(){ return f; }
  new f() instanceof f;//问这一行的值
  
 ```
+
 > 解析：   
 > 由于函数f会返回自身，这个new 就形同虚设  
 > 如果f的形式为 function f(){return this}或function f(){}就不一样   
