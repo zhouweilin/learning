@@ -1,10 +1,7 @@
 # learning
 Learning note about web techs
 
-###web测速工具
-* [奇云测](http://ce.cloud.360.cn/)
-* [卡卡网](http://www.webkaka.com/webCheck.aspx)
-* [gtmetrix](https://gtmetrix.com/)
+
 
 ###hibridapp 开发框架
 1. [DCloud](http://dcloud.io/runtime.html)
@@ -15,6 +12,8 @@ Learning note about web techs
 * html5/css3效果
   * [单页面切换](http://www.17sucai.com/preview/118194/2015-06-27/secret-project/index.html) 
 * [15 个最佳的 jQuery 表格插件](http://www.oschina.net/translate/jquery-grids?from=20131201)
+* [Swipe](http://idangero.us/swiper/demos/#.VwXFKKR96Hs)
+* [jquery slider](http://www.jssor.com/)
 
 
 
@@ -38,6 +37,10 @@ Learning note about web techs
 * [Javascript 异步加载详解](http://www.cnblogs.com/tiwlin/archive/2011/12/26/2302554.html)
 * [高效Web前端编程实践](http://slides.com/mos/high-performance-web-programming-guide/fullscreen#/)
 * [关于web页面性能测量指标与建议](http://www.cnblogs.com/Javame/p/4398838.html)
+###web测速工具
+* [奇云测](http://ce.cloud.360.cn/)
+* [卡卡网](http://www.webkaka.com/webCheck.aspx)
+* [gtmetrix](https://gtmetrix.com/)
 
 ###组织或个人
 * [AM - 支付宝无线Web开放解决方案](http://am-team.github.io/about/about.html)
@@ -72,3 +75,4 @@ Learning note about web techs
 ###webpack & browerify
 * [Webpack 怎么用](https://segmentfault.com/a/1190000002552008)
 * [webpack-howto](https://github.com/petehunt/webpack-howto#7-multiple-entrypoints)
+
