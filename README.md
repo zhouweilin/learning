@@ -1,7 +1,9 @@
 # learning
 Learning note about web techs
 
-
+###基础知识
+* [关于js的较冷的知识点](http://blog.csdn.net/cwzhsi/article/details/47806123)
+* [Type detection](http://javascript.info/tutorial/type-detection)
 
 ###hibridapp 开发框架
 1. [DCloud](http://dcloud.io/runtime.html)
@@ -37,6 +39,7 @@ Learning note about web techs
 * [Javascript 异步加载详解](http://www.cnblogs.com/tiwlin/archive/2011/12/26/2302554.html)
 * [高效Web前端编程实践](http://slides.com/mos/high-performance-web-programming-guide/fullscreen#/)
 * [关于web页面性能测量指标与建议](http://www.cnblogs.com/Javame/p/4398838.html)
+
 ###web测速工具
 * [奇云测](http://ce.cloud.360.cn/)
 * [卡卡网](http://www.webkaka.com/webCheck.aspx)
