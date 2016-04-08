@@ -1,5 +1,5 @@
 ####Enviroment Config
-```
+```javascript
  npm install webpack -g                       //全局安装webpack    
  npm install react react-dom --save-dev       //开发环境安装 react 和 react-dom
  npm install babel-loader --save-dev          //开发环境安装 babel-loader （会自动安装依赖 babel-core）
