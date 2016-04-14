@@ -49,6 +49,7 @@ Learning note about web techs
 ###组织或个人
 * [AM - 支付宝无线Web开放解决方案](http://am-team.github.io/about/about.html)
 * [腾讯移动Web前端知识库](https://github.com/AlloyTeam/Mars)
+* [腾讯alloyteam github首页](http://alloyteam.github.io/)
 
 
 ###架构
