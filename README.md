@@ -81,3 +81,7 @@ Learning note about web techs
 * [Webpack 怎么用](https://segmentfault.com/a/1190000002552008)
 * [webpack-howto](https://github.com/petehunt/webpack-howto#7-multiple-entrypoints)
 
+###优秀的前端项目
+* [aEditor（alloyTeam）的h5编辑器](http://aeditor.alloyteam.com/)
+* [threejs](http://threejs.org/)
+
