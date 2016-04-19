@@ -17,6 +17,10 @@ Learning note about web techs
 * [15 个最佳的 jQuery 表格插件](http://www.oschina.net/translate/jquery-grids?from=20131201)
 * [Swipe](http://idangero.us/swiper/demos/#.VwXFKKR96Hs)
 * [jquery slider](http://www.jssor.com/)
+* [最全前端资源汇集](http://www.jeffjade.com/2016/03/30/104-front-end-tutorial/#)
+* [前端工程师手册](https://www.gitbook.com/book/leohxj/front-end-database/details)
+* [Front-end Developer HandBook](https://www.gitbook.com/book/dwqs/frontenddevhandbook/details)
+* [googleDevTool : network-performance](https://developers.google.com/web/tools/chrome-devtools/profile/network-performance/resource-loading)
 
 
 
