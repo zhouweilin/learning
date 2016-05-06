@@ -7,6 +7,9 @@ Learning note about web techs
 * [kangax 的javascript谜题](http://www.cnblogs.com/rubylouvre/archive/2010/02/13/1667565.html)
 * [tutorialspoint](http://www.tutorialspoint.com/index.htm)
 
+###nodejs
+* [node.js中文资料导航](https://github.com/youyudehexie/node123)
+
 ###hibridapp 开发框架
 1. [DCloud](http://dcloud.io/runtime.html)
 2. [APICloud](http://www.apicloud.com/)
