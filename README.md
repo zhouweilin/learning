@@ -1,5 +1,6 @@
 # learning
-Learning note about web techs
+Learning note about web techs   
+Rule One: 工作时间只思考工作的事情
 
 ###基础知识
 * [关于js的较冷的知识点](http://blog.csdn.net/cwzhsi/article/details/47806123)
@@ -27,8 +28,6 @@ Learning note about web techs
 * [前端工程师手册](https://www.gitbook.com/book/leohxj/front-end-database/details)
 * [Front-end Developer HandBook](https://www.gitbook.com/book/dwqs/frontenddevhandbook/details)
 * [googleDevTool : network-performance](https://developers.google.com/web/tools/chrome-devtools/profile/network-performance/resource-loading)
-
-
 
 ###web资源
 * [DevDocs(各种语言的开发文档)](http://devdocs.io/)
