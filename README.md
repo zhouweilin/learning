@@ -12,6 +12,7 @@ Rule One: 工作时间只思考工作的事情
 ###nodejs
 * [node.js中文资料导航](https://github.com/youyudehexie/node123)
 * [阮一峰的nodejs教程](http://javascript.ruanyifeng.com/nodejs/express.html)
+* [以express的方式学习koa](https://cnodejs.org/topic/56650091e7cd33da066d6ee7)
 
 ###hibridapp 开发框架
 1. [DCloud](http://dcloud.io/runtime.html)
