@@ -6,9 +6,11 @@ Learning note about web techs
 * [Type detection](http://javascript.info/tutorial/type-detection)
 * [kangax 的javascript谜题](http://www.cnblogs.com/rubylouvre/archive/2010/02/13/1667565.html)
 * [tutorialspoint](http://www.tutorialspoint.com/index.htm)
+* [阮一峰的ES6教程](http://es6.ruanyifeng.com/)
 
 ###nodejs
 * [node.js中文资料导航](https://github.com/youyudehexie/node123)
+* [阮一峰的nodejs教程](http://javascript.ruanyifeng.com/nodejs/express.html)
 
 ###hibridapp 开发框架
 1. [DCloud](http://dcloud.io/runtime.html)
