@@ -1,11 +1,18 @@
 # learning
-Learning note about web techs
+Learning note about web techs   
+Rule One: 工作时间只思考工作的事情
 
 ###基础知识
 * [关于js的较冷的知识点](http://blog.csdn.net/cwzhsi/article/details/47806123)
 * [Type detection](http://javascript.info/tutorial/type-detection)
 * [kangax 的javascript谜题](http://www.cnblogs.com/rubylouvre/archive/2010/02/13/1667565.html)
 * [tutorialspoint](http://www.tutorialspoint.com/index.htm)
+* [阮一峰的ES6教程](http://es6.ruanyifeng.com/)
+
+###nodejs
+* [node.js中文资料导航](https://github.com/youyudehexie/node123)
+* [阮一峰的nodejs教程](http://javascript.ruanyifeng.com/nodejs/express.html)
+* [以express的方式学习koa](https://cnodejs.org/topic/56650091e7cd33da066d6ee7)
 
 ###hibridapp 开发框架
 1. [DCloud](http://dcloud.io/runtime.html)
@@ -22,8 +29,6 @@ Learning note about web techs
 * [前端工程师手册](https://www.gitbook.com/book/leohxj/front-end-database/details)
 * [Front-end Developer HandBook](https://www.gitbook.com/book/dwqs/frontenddevhandbook/details)
 * [googleDevTool : network-performance](https://developers.google.com/web/tools/chrome-devtools/profile/network-performance/resource-loading)
-
-
 
 ###web资源
 * [DevDocs(各种语言的开发文档)](http://devdocs.io/)
@@ -81,6 +86,7 @@ Learning note about web techs
 
 ###MarkDown
 * [Markdown——入门指南](http://www.jianshu.com/p/1e402922ee32)
+* [马克飞象-为印象笔记而生](https://maxiang.io/#)
 
 
 ###webpack & browerify
