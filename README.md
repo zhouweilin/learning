@@ -85,6 +85,7 @@ Rule One: 工作时间只思考工作的事情
 
 ###MarkDown
 * [Markdown——入门指南](http://www.jianshu.com/p/1e402922ee32)
+* [马克飞象-为印象笔记而生](https://maxiang.io/#)
 
 
 ###webpack & browerify
