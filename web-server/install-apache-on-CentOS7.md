@@ -26,6 +26,13 @@ To stop Apache
 ```
 sudo systemctl stop httpd
 ```
+#### 4. Modules
+To check Loaded Modules
+```
+sudo httpd -M
+```
+
+
 
 
 
