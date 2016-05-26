@@ -39,4 +39,24 @@
 
 * 304 Not Modified
 
-#### 4XX
+#### 4XX客户端错误
+* 401 Unauthorized   
+
+> 表示发送的请求需要通过http认证（Basic认证、Digest认证）的认证信息    
+
+* 403 Forbidden   
+     
+> 表明队请求资源的访问别服务器拒绝了    
+      
+* 404 Not Found   
+
+> 表明服务器上无法找到请求的资源，也可以在服务器端拒绝请求且不想说明理由时使用     
+     
+#### 5XX服务器错误
+* 500 Internal Server Error    
+
+> 表明服务器端在执行请求时发生了错误     
+
+* 503 Service Unavailable    
+
+> 表明服务器暂时处于超负载或正在进行停机维护，现在无法处理请求
