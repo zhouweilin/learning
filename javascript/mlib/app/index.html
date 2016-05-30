@@ -3,13 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>mlib-test</title>
+    
 </head>
 <body> 
+    
+    <div class="pagescroll-wrap">
+        <div pagescroll="true">
+            
+        </div>
+        <div pagescroll="true"></div>
+        <div pagescroll="true"></div>
+        <div pagescroll="true"></div>
+        <div pagescroll="true"></div>
+        <div pagescroll="true"></div>
+    </div>
+    
+    
+    
+    <script type="text/javascript" src="./js/jquery-1.12.js"></script>
     <script type="text/javascript" src="./js/mlib.js"></script>
     <script>
-        window.onload=function(){
-           console.log(mlib);
-        }
+    //    function pageScroll(wrapper){
+    //        this.opts = {
+    //            pagination: {}
+    //        };
+    //        this.wrapper = wrapper;
+    //        this.init();
+    //    }    
+       
+    //    pageScroll.prototype = {
+    //        init: function(){
+    //            console.log(222);
+    //        }
+    //    };
+    
+    
+       function pageScroll(wrapper){
+        
+           var PageScroll = function(){
+               this.a = 'a';
+               this.init();
+           };
+           
+           PageScroll.prototype = {
+               init: function(){
+                   console.log(111);
+               }
+           }
+           
+           return new PageScroll();
+       }
+    
+    // var  pageScroll = function(name){
+       
+    //     if(pageScroll.unique !== undefined) return pageScroll.unique;
+    //     pageScroll.unique = this;
+        
+    //     this.a = name;
+    //     this.init();
+    // }
+    
+    // pageScroll.prototype = {
+    //     init: function(){
+    //     }
+    // };
+    
+       $(function(){
+          new pageScroll()
+       });
     </script>
 </body>
 </html>
