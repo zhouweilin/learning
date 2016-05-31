@@ -3,73 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <title>mlib-test</title>
-    
+    <style>
+        *{padding:0;margin:0;}
+        div{text-align:center;font-size:50px;}
+        .content{height:500px;}
+        div[pagescroll=true]{
+            height:600px;border-top:1px solid #ccc;
+            position:relative;
+        }
+        .anim{width:200px;height:300px;border:1px solid blue;position:absolute;left:50%;
+            margin-left:-100px;}
+    </style>
 </head>
 <body> 
     
     <div class="pagescroll-wrap">
+        <div class="content">500</div>
+        
         <div pagescroll="true">
-            
+            <span>500</span>
+            <p class="anim"></p>
         </div>
-        <div pagescroll="true"></div>
-        <div pagescroll="true"></div>
-        <div pagescroll="true"></div>
-        <div pagescroll="true"></div>
-        <div pagescroll="true"></div>
+        
+        <div pagescroll="true">
+            <span>1100</span>
+            <p class="anim"></p>
+        </div>
+        
+        <div pagescroll="true">
+            <span>1700</span>
+            <p class="anim"></p>
+        </div>
+        
+        <div pagescroll="true">
+            <span>2300</span>
+            <p class="anim"></p>
+        </div>
+        
+        <div pagescroll="true">
+            <span>2900</span>
+            <p class="anim"></p>
+        </div>
+        
+        <div pagescroll="true">
+            <span>3500</span>
+            <p class="anim"></p>
+        </div>
+        
     </div>
-    
-    
-    
+
     <script type="text/javascript" src="./js/jquery-1.12.js"></script>
     <script type="text/javascript" src="./js/mlib.js"></script>
     <script>
-    //    function pageScroll(wrapper){
-    //        this.opts = {
-    //            pagination: {}
-    //        };
-    //        this.wrapper = wrapper;
-    //        this.init();
-    //    }    
-       
-    //    pageScroll.prototype = {
-    //        init: function(){
-    //            console.log(222);
-    //        }
-    //    };
     
-    
-       function pageScroll(wrapper){
+       function pageScroll(wrapper, params){
         
-           var PageScroll = function(){
-               this.a = 'a';
+           var _pageScroll = function(){
+               
                this.init();
+           }, 
+           _win = $(window),
+           _proto = _pageScroll.prototype;
+           
+           _proto.wrapper = $(wrapper);
+           _proto.blocks = $(wrapper).find('div[pagescroll=true]');
+           
+           _proto.init = function(){
+                   this.onscroll();
+                   this.onload();
+           };
+           _proto.scroll = function(cback){
+                var _this = this;
+                _win.on('scroll', function(e){
+                        cback.call(_this, e);
+                });
            };
            
-           PageScroll.prototype = {
-               init: function(){
-                   console.log(111);
-               }
-           }
+           _proto.load = function(cback){
+                var _this = this;
+                _win.on('load', function(e){
+                    cback.call(_this, e); 
+                });
+            };
+             
+            _proto.onscroll = function(){
+                this.scroll(function(e){
+                
+                });
+            }; 
            
-           return new PageScroll();
+            _proto.onload = function(){
+                this.load(function(e){
+                    console.log(this.wrapper);
+                });
+            };
+           
+           return new _pageScroll();
        }
-    
-    // var  pageScroll = function(name){
-       
-    //     if(pageScroll.unique !== undefined) return pageScroll.unique;
-    //     pageScroll.unique = this;
-        
-    //     this.a = name;
-    //     this.init();
-    // }
-    
-    // pageScroll.prototype = {
-    //     init: function(){
-    //     }
-    // };
-    
+
        $(function(){
-          new pageScroll()
+          new pageScroll('.pagescroll-wrap');
        });
     </script>
 </body>
