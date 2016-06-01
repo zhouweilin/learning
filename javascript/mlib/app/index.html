@@ -7,10 +7,7 @@
         *{padding:0;margin:0;}
         div{text-align:center;font-size:50px;}
         .content{height:500px;}
-        div[pagescroll=true]{
-            height:600px;border-top:1px solid #ccc;
-            position:relative;
-        }
+        div[pagescroll=true]{height:600px;border-top:1px solid #ccc; position:relative;}
         .anim{width:200px;height:300px;border:1px solid blue;position:absolute;left:50%;
             margin-left:-100px;}
     </style>
@@ -69,9 +66,10 @@
            _proto.blocks = $(wrapper).find('div[pagescroll=true]');
            
            _proto.init = function(){
-                   this.onscroll();
-                   this.onload();
+                this.onscroll();
+                this.onload();
            };
+           
            _proto.scroll = function(cback){
                 var _this = this;
                 _win.on('scroll', function(e){
