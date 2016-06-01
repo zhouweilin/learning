@@ -13,7 +13,6 @@
     </style>
 </head>
 <body> 
-    
     <div class="pagescroll-wrap">
         <div class="content">500</div>
         
@@ -56,11 +55,13 @@
        function pageScroll(wrapper, params){
         
            var _pageScroll = function(){
-               
                this.init();
            }, 
            _win = $(window),
            _proto = _pageScroll.prototype;
+           
+      
+           
            
            _proto.wrapper = $(wrapper);
            _proto.blocks = $(wrapper).find('div[pagescroll=true]');
