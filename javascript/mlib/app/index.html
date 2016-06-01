@@ -13,7 +13,10 @@
     </style>
 </head>
 <body> 
-    <div class="pagescroll-wrap">
+
+    
+    <div class="ps-wrap">
+
         <div class="content">500</div>
         
         <div pagescroll="true">
@@ -52,21 +55,20 @@
     <script type="text/javascript" src="./js/mlib.js"></script>
     <script>
     
-       function pageScroll(wrapper, params){
-        
-           var _pageScroll = function(){
-               this.init();
+
+       (function(win){
+          
+           var _pageScroll = function(wrapper, params){
+                this.init(wrapper, params);
+
            }, 
-           _win = $(window),
+           _win = $(win),
            _proto = _pageScroll.prototype;
            
-      
-           
-           
-           _proto.wrapper = $(wrapper);
-           _proto.blocks = $(wrapper).find('div[pagescroll=true]');
-           
-           _proto.init = function(){
+           _proto.init = function(wrapper, params){
+                this._wrap = $(wrapper);
+                this._blocks = $(wrapper).find('div[pagescroll=true]');
+                this._params = params;
                 this.onscroll();
                 this.onload();
            };
@@ -93,16 +95,21 @@
            
             _proto.onload = function(){
                 this.load(function(e){
-                    console.log(this.wrapper);
+                    // console.log(this._params.name);
+                   
                 });
             };
-           
-           return new _pageScroll();
-       }
+            
+            window.pageScroll = _pageScroll;
+       })(window);
 
        $(function(){
-          new pageScroll('.pagescroll-wrap');
+
+          new pageScroll('.ps-wrap');
+         
+         
        });
+       
     </script>
 </body>
 </html>
