@@ -50,6 +50,8 @@ Rule One: 工作时间只思考工作的事情
 * [Javascript 异步加载详解](http://www.cnblogs.com/tiwlin/archive/2011/12/26/2302554.html)
 * [高效Web前端编程实践](http://slides.com/mos/high-performance-web-programming-guide/fullscreen#/)
 * [关于web页面性能测量指标与建议](http://www.cnblogs.com/Javame/p/4398838.html)
+* [为什么说DOM操作很慢](http://kb.cnblogs.com/page/534571/)
+* [在浏览器中输入Google.com并且按下回车之后发生了什么？](http://kb.cnblogs.com/page/516964/)
 
 ###web测速工具
 * [奇云测](http://ce.cloud.360.cn/)
@@ -99,3 +101,6 @@ Rule One: 工作时间只思考工作的事情
 
 ###关于Linux
 * [linux.com](https://www.linux.com/)
+
+###http
+* [SSL协议详解](http://kb.cnblogs.com/page/162080/)
