@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>mlib-test</title>
+    <link rel="stylesheet" href="./css/animate.min.css">
     <style>
         *{padding:0;margin:0;}
         div{text-align:center;font-size:50px;}
         .content{height:500px;}
         div[pagescroll=true]{height:600px;border-top:1px solid #ccc; position:relative;}
-        .anim{width:200px;height:300px;border:1px solid blue;position:absolute;left:50%;
-            margin-left:-100px;}
+        .anim{width:200px;height:300px;border:1px solid blue;position:absolute;}
+        .left{left:200px;}
+        .right{right:200px;}
+       
     </style>
 </head>
 <body> 
@@ -21,32 +24,38 @@
         
         <div pagescroll="true">
             <span>500</span>
-            <p class="anim"></p>
+            <div anim-id="1" class="anim left"></div>
+            <div anim-id="2" class="anim right"></div>
         </div>
         
         <div pagescroll="true">
             <span>1100</span>
-            <p class="anim"></p>
+            <div anim-id="2" class="anim left"></div>
+            <div anim-id="1" class="anim right"></div>
         </div>
         
         <div pagescroll="true">
             <span>1700</span>
-            <p class="anim"></p>
+            <div anim-id="1" class="anim left"></div>
+           
         </div>
         
         <div pagescroll="true">
             <span>2300</span>
-            <p class="anim"></p>
+            <div  anim-id="1" class="anim left"></div>
+            <div  anim-id="2" class="anim right"></div>
         </div>
         
         <div pagescroll="true">
             <span>2900</span>
-            <p class="anim"></p>
+            <div  anim-id="1" class="anim left"></div>
+            <div  anim-id="2" class="anim right"></div>
         </div>
         
         <div pagescroll="true">
             <span>3500</span>
-            <p class="anim"></p>
+            <div  anim-id="1" class="anim left"></div>
+            <div  anim-id="2" class="anim right"></div>
         </div>
         
     </div>
@@ -54,21 +63,24 @@
     <script type="text/javascript" src="./js/jquery-1.12.js"></script>
     <script type="text/javascript" src="./js/mlib.js"></script>
     <script>
-    
-
        (function(win){
           
            var _pageScroll = function(wrapper, params){
                 this.init(wrapper, params);
-
            }, 
            _win = $(win),
-           _proto = _pageScroll.prototype;
+           _body = $('body'),
+           _html = $('html'),
+           _proto = _pageScroll.prototype,
+           _wHeight = _win.height(),
+           _ua = navigator.userAgent,
+           _isMs = (_ua.search('Trident') > 0) || (_ua.search('Edge') > 0);
            
            _proto.init = function(wrapper, params){
                 this._wrap = $(wrapper);
                 this._blocks = $(wrapper).find('div[pagescroll=true]');
                 this._params = params;
+                this._bRef = _getBlocksRef(this._blocks);
                 this.onscroll();
                 this.onload();
            };
@@ -76,7 +88,7 @@
            _proto.scroll = function(cback){
                 var _this = this;
                 _win.on('scroll', function(e){
-                        cback.call(_this, e);
+                    cback.call(_this, e);
                 });
            };
            
@@ -89,27 +101,110 @@
              
             _proto.onscroll = function(){
                 this.scroll(function(e){
-                
+                    var sTop; 
+                    
+                    if(_isMs){
+                        sTop = _win.scrollTop();
+                        this.toggleAnim(sTop);
+                    }else{
+                        sTop = _body.scrollTop();
+                        this.toggleAnim(sTop);
+                       
+                    } 
                 });
             }; 
            
             _proto.onload = function(){
                 this.load(function(e){
-                    // console.log(this._params.name);
+                  var sTop;
+                   
+                   this.setAnim();
+                   if(!_isMs){
+                      sTop = _body.scrollTop()
+                      this.toggleAnim(sTop);
+
+                   }else{
+                      sTop = _win.scrollTop();
+                      this.toggleAnim(sTop);
+                   } 
                    
                 });
             };
-            
+
+            _proto.setAnim = function(){
+              // console.log(this._params.anims);
+              var _this = this,
+                  anims = _this._params.anims;
+
+              this._blocks.each(function(index){
+                var eles = $(this).find('.anim'),
+                    anim = anims[index];
+               
+                eles.each(function(){
+                  var a_id = parseInt($(this).attr('anim-id')),
+                      ele_anim = anim[a_id - 1];
+
+                  $(this).attr('anim-type', ele_anim[0]);
+                  $(this).attr('anim-duration', ele_anim[1]);
+                  $(this).attr('anim-delay', ele_anim[2]);
+                });
+              });
+            };
+
+            _proto.toggleAnim = function(sTop){
+              var ref = this._bRef;
+              
+              this._blocks.each(function(index, item){
+
+                  if(sTop - ref[0][index] >= -_wHeight && sTop - ref[0][index] - ref[1][index] <= 0){
+                      
+                      
+                  }else{
+                      
+                  }    
+                 
+              });
+            };
+
+            function _getBlocksRef (blocks){
+              var arr1 = blocks.map(function(index, item){
+                          return $(this).offset().top;
+                      }).get(),
+                  arr2 = blocks.map(function(index, item){
+                       return $(this).height();
+                  }).get(),
+                  arr3 = [];
+                  arr3.push(arr1, arr2);
+
+                  return arr3;
+            }
+
             window.pageScroll = _pageScroll;
+
        })(window);
 
        $(function(){
 
-          new pageScroll('.ps-wrap');
-         
-         
+          // new pageScroll('.ps-wrap', {
+          //   anims: [
+          //     [['slideLeft', 1, 0], ['slideLeft', 1, 0]],
+          //     [['slideLeft', 1, 0], ['slideLeft', 1, 0]],
+          //     [['slideLeft', 1, 0]],
+          //     [['slideLeft', 1, 0], ['slideLeft', 1, 0]],
+          //     [['slideLeft', 1, 0], ['slideLeft', 1, 0]],
+          //     [['slideLeft', 1, 0], ['slideLeft', 1, 0]]
+          //   ]
+          // });
+
+        
+
+
+
+
+                
        });
-       
+
+
     </script>
 </body>
 </html>
