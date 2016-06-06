@@ -7,11 +7,18 @@
     <style>
         *{padding:0;margin:0;}
         div{text-align:center;font-size:50px;}
+        div.ps-wrap{position:relative}
         .content{height:500px;}
         div[pagescroll=true]{height:900px;border-top:1px solid #ccc; position:relative;width:70%;overflow:hidden;margin:0 auto;}
         .anim{width:200px;height:300px;border:1px solid blue;position:absolute;visibility:hidden;}
         .left{left:200px;}
         .right{right:200px;}
+        .ps-nav-style{position:fixed;height:;right:0;width:24px;padding:4px 0;background:rgba(0, 0, 0, .3);border-radius:10px;}
+        .ps-nav-style span{display:block;width:14px;height:14px;background:#000;opacity:0.8; border-radius:100%;margin:10px auto;filter:blur(10px);cursor:pointer;background:#fff;
+          transition:background .3s;
+          }
+        .ps-nav-style span.active{background:#e41538}
+        
        
     </style>
 </head>
@@ -78,7 +85,7 @@
            _proto.init = function(wrapper, params){
                 this._wrap = $(wrapper);
                 this._blocks = $(wrapper).find('div[pagescroll=true]');
-                this._params = params;
+                this._params = $.extend(_opts, params);
                 this._bRef = _getBlocksRef(this._blocks);
                 this._animEles = _getAnimEles(this._blocks);
                 this._delayTimers = [];
@@ -86,9 +93,12 @@
                 this.onload();         
            };
 
-           _proto._opts = {
-                 
+           _opts = {
+                nav: null
+           }
 
+           _nav = {
+              defaultClass:'ps-nav-style'
            }
            
            _proto.scroll = function(cback){
@@ -108,53 +118,35 @@
             _proto.onscroll = function(){
                 this.scroll(function(e){
                     var sTop; 
-
                     if(_isMs){
                         sTop = _win.scrollTop();
                         this.toggleAnim(sTop);
                     }else{
                         sTop = _body.scrollTop();
                         this.toggleAnim(sTop);
-                       
                     } 
                 });
             }; 
            
             _proto.onload = function(){
+                if(this._params.nav){
+                  _createNav.call(this);
+                  if(this._params.nav.defaultClass){
+                    this._nav.addClass(_nav.defaultClass);
+                  }
+                }
+                
                 this.load(function(e){
                   var sTop;
-                   
-                   this.setAnim();
+                 
                    if(!_isMs){
                       sTop = _body.scrollTop()
                       this.toggleAnim(sTop);
-
                    }else{
                       sTop = _win.scrollTop();
                       this.toggleAnim(sTop);
                    } 
-                   
                 });
-            };
-
-            _proto.setAnim = function(){
-              // console.log(this._params.anims);
-              var _this = this,
-                  anims = _this._params.anims;
-
-              this._blocks.each(function(index){
-                var eles = $(this).find('.anim'),
-                    anim = anims[index];
-               
-                eles.each(function(){
-                  var a_id = parseInt($(this).attr('anim-id')),
-                      ele_anim = anim[a_id - 1];
-
-                  $(this).attr('anim-type', ele_anim[0]);
-                  $(this).attr('anim-duration', ele_anim[1]);
-                  $(this).attr('anim-delay', ele_anim[2]);
-                });
-              });
             };
 
             _proto.toggleAnim = function(sTop){
@@ -170,16 +162,14 @@
               this._blocks.each(function(index, item){
                   var anim = anims[index],
                       animEles = _this._animEles[index];
-
                   if(sTop - ref[0][index] >= -_wHeight && 
                     sTop - ref[0][index] - ref[1][index] <= 0){
-                    
                     _excAnim.call(_this, animEles, anim);
-
+                    _this._navItems.eq(index).addClass('active');
                   }else{
                     _removeAnim.call(_this, animEles, anim);
+                    _this._navItems.eq(index).removeClass('active');
                   }    
-                 
               });
             };
 
@@ -228,13 +218,30 @@
               });
             }
 
-            window.pageScroll = _pageScroll;
+            function _createNav(){
+              var oNav = $('<div class="ps-nav"></div>');
+  
+              this._blocks.each(function(index){
+                var item = $('<span class="nav-item nav-'+ index +'"></span>');  
+                oNav.append(item);
+              });
 
+              this._nav = oNav;
+              this._navItems = oNav.find('.nav-item');
+              this._blocks.eq(0).before(oNav);
+
+            }
+
+            window.pageScroll = _pageScroll;
        })(window);
 
        $(function(){
 
           new pageScroll('.ps-wrap', {
+            nav: {
+              addClass: '',
+              defaultClass: true
+            },
             anims: [
               [['slideRight', 1, 0], ['slideLeft', 1, 0.2]],
               [['slideRight', 1, 0], ['slideLeft', 1, 0.2]],
@@ -247,64 +254,7 @@
                 
        });
 
-       (function(win){
-          function CArray(numElements){
-            this.dataStore = [];
-            this.pos = 0;
-            this.numElements = numElements;
-            for(var i = 0; i < numElements.length; ++i){
-              this.dataStore[i] = i;
-            }
-          }
-
-          CArray.prototype = {
-            insert: insert,
-            toString: toString,
-            clear: clear,
-            setData: setData,
-            swap: swap
-          }
-
-          function setData(){
-            for(var i = 0; i < this.numElements; ++i){
-              this.dataStore[i] = Math.floor(Math.random() * (this.numElements + 1));
-            }
-          }
-
-          function clear(){
-            for(var i = 0; i < this.dataStore.length; ++i){
-              this.dataStore[i] = 0;
-            }
-          }
-
-          function insert(ele){
-            this.dataStore[this.pos++] = ele;
-          };
-
-          function toString(){
-            var restr = '';
-            for(var i = 0; i < this.dataStore.length; ++i){
-              restr += this.dataStore[i] + ', ';
-              if(i > 0 & i % 10 == 0){
-                restr += '\n';
-              }
-            }
-
-            return restr;
-          }
-
-          function swap(arr, index1, index2){
-            var temp = arr[index1];
-            arr[index1] = arr[index2];
-            arr[index2] = temp;
-          }
-
-          var numElements = 100;
-          var myNums = new CArray(numElements);
-          myNums.setData();
-         
-
-       })(window);
+      
 
 
     </script>

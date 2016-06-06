@@ -22,6 +22,7 @@ Rule One: 工作时间只思考工作的事情
 ###前端资源
 * html5/css3效果
   * [单页面切换](http://www.17sucai.com/preview/118194/2015-06-27/secret-project/index.html) 
+  * [css-tricks](https://css-tricks.com/)
 * [15 个最佳的 jQuery 表格插件](http://www.oschina.net/translate/jquery-grids?from=20131201)
 * [Swipe](http://idangero.us/swiper/demos/#.VwXFKKR96Hs)
 * [jquery slider](http://www.jssor.com/)
