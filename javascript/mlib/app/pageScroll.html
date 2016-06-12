@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mlib-test</title>
+    <link rel="stylesheet" href="./css/animate.min.css">
+    <style>
+        *{padding:0;margin:0;}
+        html{height:100%;}
+        body{height:100%;}
+        div{text-align:center;font-size:50px;}
+
+        div.ps-wrap{position:relative;}
+        .content{height:500px;}
+        div[pagescroll=true]{height:900px;border-top:1px solid #ccc; position:relative;width:70%;overflow:hidden;margin:0 auto;}
+        .anim{width:200px;height:300px;border:1px solid blue;position:absolute;visibility:hidden;}
+        .left{left:200px;}
+        .right{right:200px;}
+        .ps-nav-style{position:fixed;width:30px;padding:4px 0;background:rgba(0, 0, 30, .5);border-radius:4px;}
+        .ps-nav-style span{display:block;width:14px;height:14px;background:#000;opacity:0.8; border-radius:100%;margin:10px auto;cursor:pointer;background:#fff;transition:background .3s;}
+        .ps-nav-style span.active{background:#e41538}
+    </style>
+</head>
+<body> 
+
+    
+    <div class="ps-wrap">
+
+        <div class="content">500</div>
+        
+        <div pagescroll="true">
+            <span>500</span>
+            <div anim-id="1" class="anim left"></div>
+            <div anim-id="2" class="anim right"></div>
+        </div>
+        
+        <div pagescroll="true">
+            <span>1100</span>
+            <div anim-id="1" class="anim right"></div>
+            <div anim-id="2" class="anim left"></div>
+            
+        </div>
+        
+        <div pagescroll="true">
+            <span>1700</span>
+            <div anim-id="1" class="anim left"></div>
+        </div>
+        
+        <div pagescroll="true">
+            <span>2300</span>
+            <div  anim-id="1" class="anim left"></div>
+            <div  anim-id="2" class="anim right"></div>
+        </div>
+        
+        <div pagescroll="true">
+            <span>2900</span>
+            <div  anim-id="1" class="anim left"></div>
+            <div  anim-id="2" class="anim right"></div>
+        </div>
+        
+        <div pagescroll="true">
+            <span>3500</span>
+            <div  anim-id="1" class="anim left"></div>
+            <div  anim-id="2" class="anim right"></div>
+        </div>
+        
+    </div>
+
+    <script type="text/javascript" src="./js/jquery-1.12.js"></script>
+    <script type="text/javascript" src="./js/mlib.js"></script>
+    <script>
+       (function(win){
+          
+           var _pageScroll = function(wrapper, params){
+                this.init(wrapper, params);
+           }, 
+           _win = $(win),
+           _body = $('body'),
+           _html = $('html'),
+           _proto = _pageScroll.prototype,
+           _wHeight = _win.height(),
+           _ua = navigator.userAgent,
+           _isMs = (_ua.search('Trident') > 0) || (_ua.search('Edge') > 0);
+           
+           _proto.init = function(wrapper, params){
+                this._wrap = $(wrapper);
+                this._blocks = $(wrapper).find('div[pagescroll=true]');
+                this._params = $.extend(_opts, params);
+                this._bRef = _getBlocksRef(this._blocks);
+                this._animEles = _getAnimEles(this._blocks);
+               
+                this.onscroll();
+                this.onload();         
+           };
+
+           _opts = {
+                nav: null
+           }
+
+           _nav = {
+              defaultClass:'ps-nav-style'
+           }
+           
+           _proto.scroll = function(cback){
+                var _this = this;
+                _win.on('scroll', function(e){
+                    cback.call(_this, e);
+                });
+           };
+           
+           _proto.load = function(cback){
+                var _this = this;
+                _win.on('load', function(e){
+                    cback.call(_this, e); 
+                });
+            };
+             
+            _proto.onscroll = function(){
+                this.scroll(function(e){
+                    var sTop; 
+                    if(_isMs){
+                        sTop = _win.scrollTop();
+                        this.toggleAnim(sTop);
+                    }else{
+                        sTop = _body.scrollTop() || _html.scrollTop();
+                      
+                        this.toggleAnim(sTop);
+                    } 
+                });
+            }; 
+           
+            _proto.onload = function(){
+                 if(this._params.nav){
+                    _setNav.call(this);
+                 }
+                
+                this.load(function(e){
+                  var sTop;
+                 
+                   if(!_isMs){
+                      sTop = _body.scrollTop()
+                      this.toggleAnim(sTop);
+                   }else{
+                      sTop = _win.scrollTop();
+                      this.toggleAnim(sTop);
+                   } 
+                });
+            };
+
+            _proto.toggleAnim = function(sTop){
+              var ref = this._bRef,
+                  _this = this,
+                  anims = this._params.anims; 
+              this._blocks.each(function(index, item){
+                  var anim = anims[index],
+                      animEles = _this._animEles[index];
+
+                  if(sTop - ref[0][index] >= -_wHeight && 
+                    sTop - ref[0][index] - ref[1][index] <= 0){
+                    _excAnim.call(_this, animEles, anim);
+
+                    _this._navItems.eq(index).siblings().removeClass('active').end().addClass('active');
+                  }else{
+                    _removeAnim.call(_this, animEles, anim);
+                  }    
+              });
+            };
+
+            function _getBlocksRef (blocks){
+              var arr1 = blocks.map(function(index, item){
+                          return $(this).offset().top;
+                      }).get(),
+                  arr2 = blocks.map(function(index, item){
+                       return $(this).height();
+                  }).get(),
+                  arr3 = [];
+                  arr3.push(arr1, arr2);
+                  return arr3;
+            }
+
+            function _getAnimEles(blocks){
+              return blocks.map(function(){
+                        return $(this).find('.anim');
+                    }).get();
+            }
+
+            function _excAnim(eles, anim){
+                var _this = this;
+
+                eles.each(function(){
+                   var $this = $(this),
+                      a_id = parseInt($(this).attr('anim-id')),
+                      ele_anim = anim[a_id - 1];
+                
+                   $(this).css({
+                      animationDuration: ele_anim[1] + 's'
+                   });
+                   
+                   setTimeout(function(){
+                       $this.addClass(ele_anim[0]);
+                   }, ele_anim[2] * 1000);
+                });  
+            }
+
+            function _removeAnim(eles, anim){
+              eles.each(function(){
+                 var $this = $(this),
+                    a_id = parseInt($this.attr('anim-id')),
+                    ele_anim = anim[a_id - 1];
+                 $this.removeClass(ele_anim[0]);
+              });
+            }
+
+            function _createNav(){
+              var oNav = $('<div class="ps-nav"></div>');
+  
+              this._blocks.each(function(index){
+                var item = $('<span class="nav-item nav-'+ index +'"></span>');  
+                oNav.append(item);
+              });
+
+              this._nav = oNav;
+              
+              this._navItems = oNav.find('.nav-item');
+              this._blocks.eq(0).before(oNav);
+            }
+
+            function _setNav(){
+
+                _createNav.call(this);
+
+                if(this._params.nav.defaultClass){
+                  this._nav.addClass(_nav.defaultClass);
+                  this._nav.css({
+                    top: '50%',
+                    marginTop: - this._nav.height() / 2,
+                    right: 10
+                  });
+                }
+             
+            }
+
+            window.pageScroll = _pageScroll;
+       })(window);
+
+       $(function(){
+
+         var ps = new pageScroll('.ps-wrap', {
+            nav: {
+              addClass: '',
+              defaultClass: true
+            },
+            anims: [
+              [['slideRight', 1, 0], ['slideLeft', 1, 2]],
+              [['slideRight', 1, 0], ['slideLeft', 1, 0.5]],
+              [['slideRight', 1, 0]],
+              [['slideRight', 1, 0], ['slideLeft', 1, 0.5]],
+              [['slideRight', 1, 0], ['slideLeft', 1, 0.5]],
+              [['slideRight', 1, 0], ['slideLeft', 1, 0.5]]
+            ]
+          });
+
+          console.log(ps);
+
+
+         
+                
+       });
+
+    </script>
+</body>
+</html>

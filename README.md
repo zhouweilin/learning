@@ -58,6 +58,10 @@ Rule One: 工作时间只思考工作的事情
 * [奇云测](http://ce.cloud.360.cn/)
 * [卡卡网](http://www.webkaka.com/webCheck.aspx)
 * [gtmetrix](https://gtmetrix.com/)
+* [Tank Wireshark 基本介绍](http://www.cnblogs.com/TankXiao/archive/2012/10/10/2711777.html#introduction)
+* [Tank Fiddler 基本介绍](http://www.cnblogs.com/TankXiao/archive/2012/02/06/2337728.html#!comments)
+* [FounderBox Fiddler 基本介绍](http://www.cnblogs.com/FounderBox/p/4653588.html)
+* [](http://docs.telerik.com/fiddler/Generate-Traffic/Tasks/CreateNewRequest)
 
 ###组织或个人
 * [AM - 支付宝无线Web开放解决方案](http://am-team.github.io/about/about.html)
