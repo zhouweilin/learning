@@ -8,88 +8,46 @@
         *{padding:0;margin:0;}
         html{height:100%;}
         body{height:100%;}
-        div{text-align:center;font-size:50px;}
+       
 
         
     </style>
 </head>
 <body> 
 
-    
-    <div class="ps-wrap">
 
-        <div class="content">500</div>
-        
-        <div pagescroll="true">
-            <span>500</span>
-        </div>
-        
-        <div pagescroll="true">
-            <span>1100</span>
-        </div>
-        
-        <div pagescroll="true">
-            <span>1700</span>
-        </div>
-        
-        <div pagescroll="true">
-            <span>2300</span>
-        </div>
-        
-        <div pagescroll="true">
-            <span>2900</span>
-        </div>
-        
-        <div pagescroll="true">
-            <span>3500</span>
-        </div>
-        
-    </div>
+    <div class="d1">1111</div>
+
+
+
 
     <script type="text/javascript" src="./js/jquery-1.12.js"></script>
     <script type="text/javascript" src="./js/mlib.js"></script>
     <script>
-      (function(win){
-        function Graph(v){
-          this.vertices = v;
-          this.edges = 0;
-          this.adj = [];
-          for(var i = 0; i < this.vertices; ++i){
-            this.adj[i] = [];
-            this.adj[i] .push('');
-          }
 
+    (function(factory){
+        if (typeof define === 'function' && define.amd) {
+          // AMD. Register as an anonymous module.
+          define(['jquery'], function ($) {
+            return factory($);
+          });
+        } else if (typeof module === 'object' && typeof module.exports === 'object') {
+          // Node-like environment
+          module.exports = factory(require('jquery'));
+        } else {
+          // Browser globals
+          factory(window.jQuery);
         }
+    }(function($){
 
-        Graph.prototype = {
-          addEdge: addEdge,
-          toString: toString
-        }
+    }));
 
-        function addEdge(v, w){
-          this.adj[v].push(w);
-          this.adj[w].push(v);
-          this.edges ++;
-        }
-
-        function toString(){
-
-        }
-
-      })(window);
-
-
+    
+    $(function(){
+        
+    });
+            
      
-   
-      $(function(){
-
-       
-
-
-       
-              
-      });
-
     </script>
 </body>
 </html>

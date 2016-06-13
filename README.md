@@ -109,3 +109,6 @@ Rule One: 工作时间只思考工作的事情
 
 ###http
 * [SSL协议详解](http://kb.cnblogs.com/page/162080/)
+
+### Frequently used jquery plugins
+* []()
