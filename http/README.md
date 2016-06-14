@@ -1,8 +1,8 @@
 ## About TCP/IP
 ####标准组织和RFC
-* __IAB(Internet Architecture Board 网络架构委员会):__设置Internet的策略和负责TCP/IP标准未来发展的理事会
-* __IEIF(The Internet Engineering Task Force互联网工作任务组):__研究和管辖TCP/IP协议簇工程任务的组织
-* __IRTF(Internet Research Task Force互联网研究任务组):__IAB的分支机构，致力于长期的研究    
+* __IAB(Internet Architecture Board 网络架构委员会): __ 设置Internet的策略和负责TCP/IP标准未来发展的理事会
+* __IEIF(The Internet Engineering Task Force互联网工作任务组): __ 研究和管辖TCP/IP协议簇工程任务的组织
+* __IRTF(Internet Research Task Force互联网研究任务组): __ IAB的分支机构，致力于长期的研究    
 
 *Address: [RFC](http://www.rfc-editor.org/), [IAB](https://www.iab.org/), [IETF](http://www.ietf.org/), [IRTF](https://irtf.org/)*
 
