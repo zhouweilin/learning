@@ -8,17 +8,11 @@
         *{padding:0;margin:0;}
         html{height:100%;}
         body{height:100%;}
-       
-
-        
-    </style>
-</head>
+    </style>  
 <body> 
 
 
     <div class="d1">1111</div>
-
-
 
 
     <script type="text/javascript" src="./js/jquery-1.12.js"></script>
@@ -27,6 +21,7 @@
 
     (function(factory){
         if (typeof define === 'function' && define.amd) {
+
           // AMD. Register as an anonymous module.
           define(['jquery'], function ($) {
             return factory($);
@@ -35,11 +30,16 @@
           // Node-like environment
           module.exports = factory(require('jquery'));
         } else {
-          // Browser globals
+
+          // Browser global
           factory(window.jQuery);
         }
-    }(function($){
 
+    }(function($){
+        
+
+
+                
     }));
 
     
