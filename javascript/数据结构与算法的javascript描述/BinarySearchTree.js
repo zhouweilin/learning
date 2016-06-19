@@ -1,13 +1,10 @@
 (function(win){
 
-
    /*
    * Binary search tree(BST)
    * 二叉查找树的结构：
-
    * Property:
    * 1.dataStore: array                   |   底层数据结构
-   
    * Method:
    * 1. add(key, value): fn               |   新增一个键值对
    * 2. find(key): fn                     |   查找一个键的相应的值
@@ -16,8 +13,7 @@
    * 5. count(): fn                       |   返回字典的元素个数
    * 6. clear(): fn                       |   返回栈顶元素
    */
-
-
+   
    function Node(data, left, right){
      this.data = data;
      this.left = left;
