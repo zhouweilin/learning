@@ -30,4 +30,19 @@ var a = 5;
 
 *这应该是js里面没有加分号最危险的陷阱了*
 
-
+1. Fibonacci algorithm
+```javascript
+function getNthFibonacci(num){
+  if(num < 2) return 1;
+  var first = 1,
+      second = 1,
+      third;
+  for(var i = 2;i <= num;i ++){
+    third = first + second;
+    first = second;
+    second = third;
+  }
+  console.log(third);
+  return third;
+}
+```
