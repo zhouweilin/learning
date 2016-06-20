@@ -37,6 +37,42 @@
 
     }(function($){
         
+
+        function Node(data){
+          this.data = data;
+          this.right = null;
+          this.left = null;
+        }
+
+        function BinarySearchTree(){
+          this.root = null;
+        }
+
+        BinarySearchTree.prototype = {
+          find: find,
+          add: add
+        }
+
+        function add(data){
+          if(this.find(data) !== null) return;
+          var currNode = this.root;
+          
+        }
+
+        function find(data){
+          var currNode = this.root;
+          while(currNode.data){
+            if(currNode.data == data){
+              return currNode;
+            }else if(data <  currNode.data){
+              currNode = currNode.left;
+            }else{
+              currNode = currNode.right;
+            }
+          }
+
+          return null;
+        }
       
     }));
     
