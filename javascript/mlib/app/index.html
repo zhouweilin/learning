@@ -8,16 +8,28 @@
         *{padding:0;margin:0;}
         html{height:100%;}
         body{height:100%;}
+        .ajax{margin:100px auto;width:300px;}
     </style>  
 <body> 
-
-
-    <div class="d1">1111</div>
-
+    <div class="ajax">
+     <form action="">
+        <dl>
+          <dt>表单</dt>
+          <dd><input type="text" name="name" placeholder="请输入您的姓名"></dd>
+          <dd><input type="text" name="cell"placeholder="请输入您的手机号码"></dd>
+          <dd><input type="text" placeholder="请输入其他信息"></dd>
+          <dd><input type="radio" name="agend">男<input type="radio" name="agend">女</dd>
+          <dd><input type="checkbox">音乐 <input type="checkbox">运动</dd>
+          <input class="submit" type="submit">
+        </dl>
+      </form>
+    </div>
 
     <script type="text/javascript" src="./js/jquery-1.12.js"></script>
+    <script type="text/javascript" src="./js/plugins/dev/jquery.validate.js"></script>
     <script type="text/javascript" src="./js/mlib.js"></script>
     <script>
+
 
     (function(factory){
         if (typeof define === 'function' && define.amd) {
@@ -36,45 +48,109 @@
         }
 
     }(function($){
-        
 
-        function Node(data){
-          this.data = data;
-          this.right = null;
-          this.left = null;
-        }
+        function validSubmit(param){
+          var self = validSubmit;
 
-        function BinarySearchTree(){
-          this.root = null;
-        }
-
-        BinarySearchTree.prototype = {
-          find: find,
-          add: add
-        }
-
-        function add(data){
-          if(this.find(data) !== null) return;
-          var currNode = this.root;
+          self.form = this;
           
+          validSubmit.param = param;
+          validSubmit.init();
+
+          return validSubmit;
         }
 
-        function find(data){
-          var currNode = this.root;
-          while(currNode.data){
-            if(currNode.data == data){
-              return currNode;
-            }else if(data <  currNode.data){
-              currNode = currNode.left;
-            }else{
-              currNode = currNode.right;
-            }
+        $.extend(validSubmit, {
+          init: function(){
+            this.getInputer();
+            console.log('begin');
+            this.submit();
+          },
+
+          getInputer: function(){
+            var self = this;
+
+            $.each(this.param.rules, function(key, val){
+               $.extend(val, {
+                  inputer: self.form.find('[name='+ key +']'),
+                  info: false
+               });
+
+               self.focus.call(self, val);
+            });
+          },
+
+          focus: function(val){
+            var self = this;
+            val.inputer.on('focus', function(){
+             
+              if(val.info && ('infoEle' in val)){ 
+                 console.log(this);
+
+                  val.infoEle.remove(); 
+                  val.info = false;
+
+                  delete val.infoEle;
+              }
+            });
+          },
+
+          submit: function(){
+            var submit = this.submitBtn = this.form.find('.submit'),
+                nodeName = submit.get(0).nodeName.toLowerCase(),
+                self = this;
+
+            submit.on('click', function(e){
+              if(nodeName == 'input' || nodeName == 'a' || nodeName == 'button') e.preventDefault();
+              self.valid.call(self);
+
+              if($.isPlainObject(self.param.ajax)) $.ajax(self.param.ajax);
+            });
+
+          },
+
+          valid: function(){
+            var rules = this.param.rules,
+                self = this;
+           
+            $.each(rules, function(key, val){
+               if(val.info){return;}
+               var ele = self.form.find('[name=' + key +']');
+               self.info(ele, key, val);
+               val.info = true;
+            });
+
+          },
+
+          info: function(after, key, val){
+            var ele = $('<b class="input-error '+ key +'-msg"><i>'+ val.message +'</i></b>');
+            ele.insertAfter(after);
+            val.infoEle = ele;
           }
+        });
 
-          return null;
-        }
+        $.fn.validSubmit = validSubmit;
       
     }));
+
+
+    $(function(){
+
+      var a = $('.ajax').validSubmit({
+        rules: {
+          name: {
+            focus: true,
+            message: 'hi'
+          },
+          cell: {
+            required: true,
+            message: 'hello'
+          }
+        }
+      });
+     
+
+    })
     
 
             
