@@ -30,7 +30,6 @@
     <script type="text/javascript" src="./js/mlib.js"></script>
     <script>
 
-
     (function(factory){
         if (typeof define === 'function' && define.amd) {
 
@@ -136,25 +135,35 @@
 
     $(function(){
 
-      var a = $('.ajax').validSubmit({
-        rules: {
-          name: {
-            focus: true,
-            message: 'hi'
-          },
-          cell: {
-            required: true,
-            message: 'hello'
-          }
-        }
-      });
+      // var a = $('.ajax').validSubmit({
+      //   rules: {
+      //     name: {
+      //       focus: true,
+      //       message: 'hi'
+      //     },
+      //     cell: {
+      //       required: true,
+      //       message: 'hello'
+      //     }
+      //   }
+      // });
      
-
-    })
-    
-
-            
      
+      var str = '??kissy/k/1.4.14/seed-min.js,mui/seed/1.4.8/seed.js,mui/globalmodule/3.0.59/seed.js,mui/btscfg-g/3.…:71 GET https://localhost.wwbizsrv.alibaba.com:4813/?_ksTS=1467361928020_973&callback=jsonp974;_ksTS=o1234;te_ksTS=o1123;';
+
+      // console.log(str.match(/(?=;)(_ksTS=o[\d]{4})/g));
+
+      var f = '99999999999'.replace(/\d{1,3}(?=(\d{3})+$)/g, '$&,');
+      console.log(f);
+
+      // console.log('123123211312.333333'.replace(/(?=(?!^)(?:\d{3})+(?:\.|$))(\d{3}(\.\d+$)?)/g, ',$1'));
+
+
+
+     
+    });
+
+   
     </script>
 </body>
 </html>
