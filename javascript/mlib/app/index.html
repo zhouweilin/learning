@@ -37,42 +37,76 @@
 
     }(function($){
         
+      function CArray(length){
+        this.dataStore = [];
+        this.eles = length;
+        for(var i = 0; i < length.length; i ++){
+          this.dataStore[i] = i;
+        }
+      }
 
-        function Node(data){
-          this.data = data;
-          this.right = null;
-          this.left = null;
+      CArray.prototype = {
+        setData: setData,
+        toString: toString,
+        swap: swap,
+        quikSort: quikSort,
+        bubbleSort: bubbleSort
+      }
+
+      function setData(){
+        for(var i = 0; i < this.eles; i ++){
+          this.dataStore[i] = Math.floor(Math.random() * (this.eles + 1) );
+        }
+      }
+
+      function swap(i , j){
+        var temp = this.dataStore[i];
+        this.dataStore[i] = this.dataStore[j];
+        this.dataStore[j] = temp;
+      }
+
+      function toString(){
+        console.log(this.dataStore);
+      }
+
+      function quikSort(arr){
+        if(arr.length === 0){ 
+          return [];
         }
 
-        function BinarySearchTree(){
-          this.root = null;
+        var lesser = [];
+        var greater = [];
+        var pivot = arr[0];
+        for(var i = 1; i < arr.length; i ++){
+           if(arr[i] < pivot){
+            lesser.push(arr[i]);
+           }else{
+            greater.push(arr[i]);
+           }
         }
 
-        BinarySearchTree.prototype = {
-          find: find,
-          add: add
-        }
+        return quikSort(lesser).concat(pivot, quikSort(greater));
+      }
 
-        function add(data){
-          if(this.find(data) !== null) return;
-          var currNode = this.root;
-          
-        }
-
-        function find(data){
-          var currNode = this.root;
-          while(currNode.data){
-            if(currNode.data == data){
-              return currNode;
-            }else if(data <  currNode.data){
-              currNode = currNode.left;
-            }else{
-              currNode = currNode.right;
+      function bubbleSort(){
+        for(var i = this.dataStore.length; i > 1; i --){
+          for(var j = 0; j < i; j ++){
+            if(this.dataStore[j] > this.dataStore[j + 1]){
+              this.swap(j ,j + 1);
             }
           }
-
-          return null;
         }
+      }
+
+      var arr = new CArray(10);
+      arr.setData();
+      arr.toString();
+      // console.log(arr.quikSort(arr.dataStore));
+      arr.bubbleSort();
+      arr.toString();
+
+
+      
       
     }));
     
