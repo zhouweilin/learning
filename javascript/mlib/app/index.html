@@ -8,111 +8,119 @@
         *{padding:0;margin:0;}
         html{height:100%;}
         body{height:100%;}
+        .ajax{margin:100px auto;width:300px;}
+        .publicBtn{position:absolute;width:100px;height:100px;background:red;}
     </style>  
 <body> 
-
-
-    <div class="d1">1111</div>
+    <!-- <div class="ajax">
+     <form action="">
+        <dl>
+          <dt>表单</dt>
+          <dd><input type="text" name="name" placeholder="请输入您的姓名"></dd>
+          <dd><input type="text" name="cell"placeholder="请输入您的手机号码"></dd>
+          <dd><input type="text" placeholder="请输入其他信息"></dd>
+          <dd><input type="radio" name="agend">男<input type="radio" name="agend">女</dd>
+          <dd><input type="checkbox">音乐 <input type="checkbox">运动</dd>
+          <input class="submit" type="submit">
+        </dl>
+      </form>
+    </div> -->
+  
+    <div class="publicBtn">
+      
+    </div>
 
 
     <script type="text/javascript" src="./js/jquery-1.12.js"></script>
+    <script type="text/javascript" src="./js/plugins/dev/jquery.validate.js"></script>
     <script type="text/javascript" src="./js/mlib.js"></script>
     <script>
 
-    (function(factory){
-        if (typeof define === 'function' && define.amd) {
+    $(function(){
 
-          // AMD. Register as an anonymous module.
-          define(['jquery'], function ($) {
-            return factory($);
-          });
-        } else if (typeof module === 'object' && typeof module.exports === 'object') {
-          // Node-like environment
-          module.exports = factory(require('jquery'));
-        } else {
+        // var $floatBox = $('.publicBtn'),
+        //   winWidth = $(window).width(),
+        //   winHeight = $(window).height(),
+        //   boxWidth = $floatBox.width(),
+        //   boxHeight = $floatBox.height(),
+        //   footHeight = $('.contactBoxnew').height(),
+        //   maxX = winWidth - boxWidth,
+        //   maxY = winHeight - (boxHeight - footHeight),
+        //   stx = sty = etx = ety = curX = curY = 0,
+        //   touchNo = 0;
 
-          // Browser global
-          factory(window.jQuery);
-        }
+        //   $floatBox.css({
+        //       top:(winHeight / 2) - (boxHeight / 2) ,
+        //       left:(maxX - 5) 
+        //   }); 
 
-    }(function($){
-        
-      function CArray(length){
-        this.dataStore = [];
-        this.eles = length;
-        for(var i = 0; i < length.length; i ++){
-          this.dataStore[i] = i;
-        }
-      }
+        //   $floatBox.animate({'opacity':1},500);
 
-      CArray.prototype = {
-        setData: setData,
-        toString: toString,
-        swap: swap,
-        quikSort: quikSort,
-        bubbleSort: bubbleSort
-      }
+        //   $(window).resize(function(){
+        //     winWidth = $(window).width();
+        //     winHeight = $(window).height();
+        //     maxX = winWidth - boxWidth,
+        //     maxY = winHeight - (boxHeight - footHeight);
+        //     $floatBox.css({
+        //       top:(winHeight / 2) - (boxHeight / 2) ,
+        //       left:(maxX - 5) 
+        //     });       
+        //   });
+          
+          
+        //     $floatBox.get(0).addEventListener('touchstart',function(e){
+        //       var left = parseInt($(this).css('left')),
+        //         top = parseInt($(this).css('top'));
+                
+        //       stx = e.touches[0].pageX - left;
+        //         sty = e.touches[0].pageY - top;
 
-      function setData(){
-        for(var i = 0; i < this.eles; i ++){
-          this.dataStore[i] = Math.floor(Math.random() * (this.eles + 1) );
-        }
-      }
+        //         document.addEventListener('touchmove', tMove ,false);
+        //         document.addEventListener('touchend', tEnd, false);
+                
+        //     },false);
 
-      function swap(i , j){
-        var temp = this.dataStore[i];
-        this.dataStore[i] = this.dataStore[j];
-        this.dataStore[j] = temp;
-      }
-
-      function toString(){
-        console.log(this.dataStore);
-      }
-
-      function quikSort(arr){
-        if(arr.length === 0){ 
-          return [];
-        }
-
-        var lesser = [];
-        var greater = [];
-        var pivot = arr[0];
-        for(var i = 1; i < arr.length; i ++){
-           if(arr[i] < pivot){
-            lesser.push(arr[i]);
-           }else{
-            greater.push(arr[i]);
-           }
-        }
-
-        return quikSort(lesser).concat(pivot, quikSort(greater));
-      }
-
-      function bubbleSort(){
-        for(var i = this.dataStore.length; i > 1; i --){
-          for(var j = 0; j < i; j ++){
-            if(this.dataStore[j] > this.dataStore[j + 1]){
-              this.swap(j ,j + 1);
-            }
-          }
-        }
-      }
-
-      var arr = new CArray(10);
-      arr.setData();
-      arr.toString();
-      // console.log(arr.quikSort(arr.dataStore));
-      arr.bubbleSort();
-      arr.toString();
+        //     function tMove(e){
+        //       e.preventDefault();
 
 
-      
-      
-    }));
-    
+        //       curX = e.targetTouches[0].pageX - stx;
+        //       curY = e.targetTouches[0].pageY - sty;
+        //       if(curX < 0){
+        //         curX = 0;
+        //       }else if(curX > maxX){
+        //         curX = maxX;
+        //       }
 
-            
-     
+        //       if(curY < 0){
+        //         curY = 0;
+        //       }else if(curY > maxY){
+        //         curY = maxY;
+        //       }
+
+        //       $floatBox.css({
+        //         left : curX,
+        //         top : curY
+        //       })
+        //     }
+
+          
+        //     function tEnd(){
+        //       document.removeEventListener('touchmove', tMove, false);
+        //       document.removeEventListener('touchend', tEnd, false);
+        //     }
+
+        $('.publicBtn').on('clicked', function(){
+          console.log(1);
+        });
+
+        $('.publicBtn').trigger('clicked');
+
+
+        });
+
+
+   
     </script>
 </body>
 </html>

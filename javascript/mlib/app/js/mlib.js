@@ -3,7 +3,7 @@
 
 	var toString = Object.prototype.toString;
 
-	var property = function(key) {
+	function property(key) {
 	  return function(obj) {
 	    return obj == null ? void 0 : obj[key];
 	  };
@@ -15,12 +15,12 @@
 	// Avoids a very nasty iOS 8 JIT bug on ARM-64. #2094
 	var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
 	var getLength = property('length');
-	var isArrayLike = function(collection) {
+	function isArrayLike(collection) {
 	  var length = getLength(collection);
 	  return typeof length == 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
 	};
 
-	var each = function(obj, iteratee){
+	function each(obj, iteratee){
 		var i, length;
 
 		if(isArrayLike(obj)){
@@ -41,23 +41,24 @@
 	}
 
 	//Is a given value a DOM element?
-	var isElement = function(obj){
+	function isElement(obj){
 		return !!(obj && obj.nodeType === 1);
 	}
 
 	//Is a given value a json object?
-	var isJson = function(obj){
+	function isJson(obj){
 		return typeof obj === 'object' && toString.call(obj) === '[object Object]' && !('length' in obj);
 	}
 
-	var toArray = function(arrayLike){
+	function toArray(arrayLike){
 		var array = [];
 		each(arrayLike, function(item){
 			array.push(item);
-		});				
+		});
+		return array;				
 	}
 
-	var extend = function(){
+	function extend(){
 		if(isArray(arguments[0])){
 			var newArray = [];
 			each(arguments, function(item){
@@ -81,7 +82,7 @@
 		}
 	};
 
-	var mergeJson = function(){
+	function mergeJson(){
 		var newObj = {};
 		each(arguments, function(item){
 			each(item, function(value, key){	

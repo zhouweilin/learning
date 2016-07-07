@@ -10,6 +10,7 @@
 * [Jerry Qu(很多原创技术文章)](https://imququ.com/archives.html)
 * [函数声明和函数表达式](http://www.cnblogs.com/Xdoable/archive/2011/09/08/2171512.html)
 * [javascript探秘](http://www.nowamagic.net/librarys/veda/detail/1630)
+* [String.replace(reg, '$1,')的原理](http://www.cnblogs.com/skywang/articles/2051052.html)
 
 ###jQuery 插件前面加`';'`号的原因
 ```javascript
