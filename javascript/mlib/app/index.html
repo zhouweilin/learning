@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"> 
     <title>mlib-test</title>
     <link rel="stylesheet" href="./css/animate.min.css">
     <style>
@@ -9,46 +10,125 @@
         html{height:100%;}
         body{height:100%;}
         .ajax{margin:100px auto;width:300px;}
-        .publicBtn{position:absolute;width:100px;height:100px;background:red;}
+        .test{position:fixed;width:100px;height:100px;border:1px solid red;}
+        #debugger{position:fixed;right:0;width:200px;height:100px;background:#000;color:#0fdd0f;padding:6px;bottom:0;}
+        .layer-wrap{position:fixed;width:100%;height:100%;left:0;top:0;}
+        .layer-mask{background:#000;opacity:.5;filter:alpha(opacity:50);position:absolute;width:100%;height:100%;}
+        .layer-container{position:absolute;left:50%;top:50%;background:#fff;}
+        body{height:2000px;}
+
     </style>  
 <body> 
-    <!-- <div class="ajax">
-     <form action="">
-        <dl>
-          <dt>表单</dt>
-          <dd><input type="text" name="name" placeholder="请输入您的姓名"></dd>
-          <dd><input type="text" name="cell"placeholder="请输入您的手机号码"></dd>
-          <dd><input type="text" placeholder="请输入其他信息"></dd>
-          <dd><input type="radio" name="agend">男<input type="radio" name="agend">女</dd>
-          <dd><input type="checkbox">音乐 <input type="checkbox">运动</dd>
-          <input class="submit" type="submit">
-        </dl>
-      </form>
-    </div> -->
+    
   
-    <div class="publicBtn">
+    <div class="test">
       
+
+
+
+
+
     </div>
+    <script>
+        var i = 0;
+        while(i <  50){
+          document.write('<p>' + i + '</p>');
+          i++;
+        }    
+    </script>
+
 
 
     <script type="text/javascript" src="./js/jquery-1.12.js"></script>
-    <script type="text/javascript" src="./js/plugins/dev/jquery.validate.js"></script>
-    <script type="text/javascript" src="./js/mlib.js"></script>
+    <!-- <script type="text/javascript" src="./js/zepto.js"></script> -->
+    <!-- <script type="text/javascript" src="./js/plugins/dev/jquery.validate.js"></script> -->
+    <!-- <script type="text/javascript" src="./js/mlib.js"></script> -->
     <script>
-
-
     (function(factory){
-      if(typeof define === 'function' && define.amd){
-        define(['jquery', function($){
-          return factory($);
-        }]);
-      }else if(typeof module === 'object' && typeof module.exports === 'object'){
+      if(typeof define === 'function'){
+        define(['jquery'], factory);
+      }else if(typeof module === 'object' && module.exports){
         module.exports = factory(require('jquery'));
       }else{
-        factory(window.jQuery);
+        factory(jQuery);
+      }
+    })(function($){
+      var defaults = {
+          width: 200,
+          height: 200,
+          preventScroll: false
+      };
+
+
+      function Layer(con, options){
+        this._body = $('body');
+        this.con = con || '请通过第一个参数传要展示的内容!';
+        this.opts = $.extend(defaults, options);
+        this.mask = null;
+        this.wrap = null;
+        this.container = null;
+        this.close = null;
+
+
+        this.init();
       }
 
-    })(function($){
+      Layer.prototype = {
+        init: function(){
+
+          this.preventScroll();
+          this.createDom();
+        },
+        createDom: function(){
+          var _wrap = this.wrap = $('<div class="layer-wrap">' + 
+                    '<div class="layer-mask"></div>' +
+                    '<div class="layer-container">' +
+                       '<span class="layer-close"></span>' + 
+                       '<div class="layer-content"></div>' +
+                    '</div>' +
+              '</div>');
+
+          this.mask = _wrap.find('.layer-mask');
+          this.close = _wrap.find('.layer-close');
+          this.container = _wrap.find('.layer-container');
+
+          this.setContainerStyle();
+
+          this._body.append(_wrap);
+        },
+        setContainerStyle: function(){
+          var opts = this.opts;
+
+          this.container.css({
+            width: opts.width,
+            height: opts.height,
+            marginLeft: - opts.width/2,
+            marginTop: - opts.height/2
+          }).find('.layer-content').append(this.con);
+
+        },
+        preventScroll: function(){
+          if(this.opts.preventScroll){
+            this._body.css('overflow', 'hidden');
+          }
+        }
+
+      }
+      
+      window.layer = Layer;
+    });
+
+
+ 
+    $(function(){
+        
+    
+
+
+      new layer('111', {
+        preventScroll: true
+      });
+
 
 
 
@@ -56,93 +136,6 @@
 
 
 
-
-    
-    $(function(){
-
-        // var $floatBox = $('.publicBtn'),
-        //   winWidth = $(window).width(),
-        //   winHeight = $(window).height(),
-        //   boxWidth = $floatBox.width(),
-        //   boxHeight = $floatBox.height(),
-        //   footHeight = $('.contactBoxnew').height(),
-        //   maxX = winWidth - boxWidth,
-        //   maxY = winHeight - (boxHeight - footHeight),
-        //   stx = sty = etx = ety = curX = curY = 0,
-        //   touchNo = 0;
-
-        //   $floatBox.css({
-        //       top:(winHeight / 2) - (boxHeight / 2) ,
-        //       left:(maxX - 5) 
-        //   }); 
-
-        //   $floatBox.animate({'opacity':1},500);
-
-        //   $(window).resize(function(){
-        //     winWidth = $(window).width();
-        //     winHeight = $(window).height();
-        //     maxX = winWidth - boxWidth,
-        //     maxY = winHeight - (boxHeight - footHeight);
-        //     $floatBox.css({
-        //       top:(winHeight / 2) - (boxHeight / 2) ,
-        //       left:(maxX - 5) 
-        //     });       
-        //   });
-          
-          
-        //     $floatBox.get(0).addEventListener('touchstart',function(e){
-        //       var left = parseInt($(this).css('left')),
-        //         top = parseInt($(this).css('top'));
-                
-        //       stx = e.touches[0].pageX - left;
-        //         sty = e.touches[0].pageY - top;
-
-        //         document.addEventListener('touchmove', tMove ,false);
-        //         document.addEventListener('touchend', tEnd, false);
-                
-        //     },false);
-
-        //     function tMove(e){
-        //       e.preventDefault();
-
-
-        //       curX = e.targetTouches[0].pageX - stx;
-        //       curY = e.targetTouches[0].pageY - sty;
-        //       if(curX < 0){
-        //         curX = 0;
-        //       }else if(curX > maxX){
-        //         curX = maxX;
-        //       }
-
-        //       if(curY < 0){
-        //         curY = 0;
-        //       }else if(curY > maxY){
-        //         curY = maxY;
-        //       }
-
-        //       $floatBox.css({
-        //         left : curX,
-        //         top : curY
-        //       })
-        //     }
-
-          
-        //     function tEnd(){
-        //       document.removeEventListener('touchmove', tMove, false);
-        //       document.removeEventListener('touchend', tEnd, false);
-        //     }
-
-        $('.publicBtn').on('clicked', function(){
-          console.log(1);
-        });
-
-        $('.publicBtn').trigger('clicked');
-
-
-        });
-
-
-   
     </script>
 </body>
 </html>

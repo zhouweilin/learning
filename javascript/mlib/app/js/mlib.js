@@ -1,5 +1,5 @@
 (function(win){
-	var base, util, coll, event, mlib;
+	var base, util, coll, events, mlib;
 
 	var toString = Object.prototype.toString;
 
@@ -139,7 +139,75 @@
 	* event collection
 
 	+++++++++++++++++++++*/
-	event = {};
+	events = {
+		on: function(targetElement, type, handler){
+			 ele.addEventListener(type, handler, false) || ele.attachEvent('on' + type, handler);
+		},
+		off: function(targetElement, type, handler){
+			if(!document.removeEventListener){
+			  ele.detachEvent('on' + type, handler);
+			} 
+			ele.removeEventListener(type, handler, false);
+		},
+		drag: function(targetElement, options){
+			var _this = this,
+			    pos = {
+			      startX: null,
+			      startY: null, 
+			      currX: null,
+			      currY: null,
+			      endX: null,
+			      endY: null
+			    };
+
+			this.on(targetElement, 'touchstart', touchStart);
+
+			function touchStart(event){
+			    event.preventDefault();
+
+			    var touch = event.changedTouches[0],
+			        left = targetElement.offsetLeft,
+			        top = targetElement.offsetTop;
+			    
+			    pos.startX = touch.pageX - left;
+			    pos.startY = touch.pageY - top;
+
+			    if(options && !!(typeof options.onTouchStart === 'function')){
+			      options.onTouchStart(event, pos);
+			    }
+			    
+			    _this.on(document, 'touchmove', touchMove);      
+			    _this.on(document, 'touchend', touchEnd);
+			}
+			
+			function touchMove(event){
+			  event.preventDefault();
+
+			  var touch = event.changedTouches[0];
+			  pos.currX = touch.pageX - pos.startX;
+			  pos.currY = touch.pageY - pos.startY;
+
+			  ele.style.left = pos.currX + 'px';
+			  ele.style.top = pos.currY + 'px';
+
+			  if(options && !!(typeof options.onTouchMove === 'function')){
+			      options.onTouchMove(event, pos);
+			  }
+			}
+
+			function touchEnd(event){
+			  var touch = event.changedTouches[0];
+			  pos.endX = touch.pageX;
+			  pos.endY = touch.pageY;
+
+			  if(options && !!(typeof options.onTouchEnd === 'function')){
+			    options.onTouchEnd(event, pos);
+			  }
+			  _this.off(document, 'touchmove', touchMove);
+			  _this.off(document, 'touchend', touchEnd);
+			}
+		}
+	};
 
 	mlib = {
 		base: base,
