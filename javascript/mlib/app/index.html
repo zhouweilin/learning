@@ -9,26 +9,41 @@
         *{padding:0;margin:0;}
         html{height:100%;}
         body{height:100%;}
-        .ajax{margin:100px auto;width:300px;}
-        .test{position:fixed;width:100px;height:100px;border:1px solid red;}
-        #debugger{position:fixed;right:0;width:200px;height:100px;background:#000;color:#0fdd0f;padding:6px;bottom:0;}
+
         .layer-wrap{position:fixed;width:100%;height:100%;left:0;top:0;}
         .layer-mask{background:#000;opacity:.5;filter:alpha(opacity:50);position:absolute;width:100%;height:100%;}
-        .layer-container{position:absolute;left:50%;top:50%;background:#fff;}
+        .layer-container{position:absolute;left:50%;top:50%;background:#fff;opacity:0;
+            transition:transform .4s, opacity .4s;
+            -ms-transition:transform .4s, opacity .4s;
+            -moz-transition: transform .4s, opacity .4s;
+            transform:scale(0);-ms-transform:scale(0);-moz-transform:scale(0);}
         body{height:2000px;}
 
+        
     </style>  
 <body> 
     
   
     <div class="test">
       
-
-
-
-
+    </div>
+    
+    <div class="layer1">
+        layer1
+        <div class="layer1-sub1">layer1-sub1</div>
 
     </div>
+
+    <div class="layer2"> 
+        layer1
+        <div class="layer2-sub1">layer2-sub1</div>          
+    </div>
+    <span class="layer3"></span>
+
+    <div class="con">
+      this is in the page!
+    </div>
+    <button>打开弹框</button>
     <script>
         var i = 0;
         while(i <  50){
@@ -52,64 +67,177 @@
         factory(jQuery);
       }
     })(function($){
+
       var defaults = {
           width: 200,
           height: 200,
-          preventScroll: false
+          left: null,
+          top: null,
+          preventScroll: false,
+          eventType: 'click',
+          onShow: null,
+          onDestroyed: null,
+          extraClass: null
       };
 
 
-      function Layer(con, options){
+      function Layer(trigger, options){
         this._body = $('body');
-        this.con = con || '请通过第一个参数传要展示的内容!';
         this.opts = $.extend(defaults, options);
+        this.con =$( this.opts.content || '<p>请通过第一个参数传要展示的内容!</p>');
         this.mask = null;
         this.wrap = null;
         this.container = null;
         this.close = null;
+        this.content = null;
+        this.maxIndex = 20;
 
-
-        this.init();
+        this.init(trigger);
       }
 
       Layer.prototype = {
-        init: function(){
+        init: function(trigger){
 
-          this.preventScroll();
-          this.createDom();
+          this.getTopIndex();
+          this.show($(trigger), this.opts.eventType);
+        },
+        create: function(){
+
+          this.preventScroll(); 
+          this.createDom();   //初始化结构
+          this.closeLayer();  //移除弹层
+        },
+        getTopIndex: function(){
+           var maxIndex = 1;
+           this._body.children().each(function(index, item){
+              var nodeName = item.nodeName.toLowerCase();
+              if(nodeName !== 'script' && nodeName !== 'br' && nodeName !== 'style' 
+                && nodeName !== 'button'){
+                  var zIndex = parseInt($(item).css('zIndex'));
+                  zIndex = isNaN(zIndex) ? 0 : zIndex;
+
+                  if(zIndex > maxIndex){
+                    maxIndex = zIndex  + 1;
+                  }
+              }
+           });
+
+           this.maxIndex = this.maxIndex > maxIndex ? this.maxIndex : maxIndex;
         },
         createDom: function(){
           var _wrap = this.wrap = $('<div class="layer-wrap">' + 
-                    '<div class="layer-mask"></div>' +
-                    '<div class="layer-container">' +
-                       '<span class="layer-close"></span>' + 
-                       '<div class="layer-content"></div>' +
-                    '</div>' +
-              '</div>');
+                         '<div class="layer-mask"></div>' + 
+                         '<div class="layer-container">' +
+                            '<span class="layer-close"></span>' + 
+                             '<div class="layer-content"></div>' +
+                          '</div>' +
+                      '</div>'),
+              _this = this;
 
+          if(this.opts.extraClass && (typeof extraClass === 'string')){
+              _wrap.addClass(this.opts.extraClass);
+          }
+
+          _wrap.css({
+            zIndex: this.maxIndex
+          });
           this.mask = _wrap.find('.layer-mask');
-          this.close = _wrap.find('.layer-close');
           this.container = _wrap.find('.layer-container');
+          this.close = this.container.find('.layer-close');
+          this.content = this.container.find('.layer-content');
 
-          this.setContainerStyle();
+          _wrap.fadeIn(400, function(){
+             _this.setContainerStyle();
+          }); 
 
-          this._body.append(_wrap);
+          this._body.append(_wrap);      
         },
+
         setContainerStyle: function(){
-          var opts = this.opts;
+          var opts = this.opts, _this = this;
 
           this.container.css({
             width: opts.width,
-            height: opts.height,
-            marginLeft: - opts.width/2,
-            marginTop: - opts.height/2
+            height: opts.height
           }).find('.layer-content').append(this.con);
 
+          if(!(opts.left === null) && !(opts.top === null)){
+            this.container.css({
+              left: opts.left,
+              right: opts.top
+            });
+          }else{
+            this.container.css({
+              left: '50%',
+              top: '50%',
+              marginLeft: - opts.width/2,
+              marginTop: - opts.height/2
+            });
+          }
+
+          setTimeout(function(){
+            _this.container.css({
+              transform: 'scale(1)',
+              msTransform: 'scale(1)',
+              mozTransform: 'scale(1)',
+              opacity: 1
+            });
+
+            if(typeof opts.onShow == 'function'){
+              opts.onShow.call(_this, _this);
+            }
+          }, 0);
+
         },
+
         preventScroll: function(){
           if(this.opts.preventScroll){
             this._body.css('overflow', 'hidden');
           }
+        }, 
+
+        destroy: function(){
+          var _this = this;
+        
+            _this.container.css({
+              transform: 'scale(0.1)',
+              opacity: 0
+            });
+
+            setTimeout(function(){
+              _this.wrap.fadeOut(function(){
+                _this.container.remove();
+                _this.wrap.remove();
+
+                if(typeof _this.opts.onDestroyed === 'function'){
+                  _this.opts.onDestroyed.call(_this, _this);
+                }
+              });
+            }, 300);
+        },
+
+        closeLayer: function(){
+          var _this = this;
+
+          this.container.click(function(event){
+            event.stopPropagation();
+          });
+
+          $.each([this.mask, this.close], function(i, item){
+            $(item).on('click', function(){
+               _this.destroy();
+            });
+          });
+        },
+
+        show: function(element, eventType){
+          var _this = this;
+          $(element).on(eventType, function(e){
+            e.stopPropagation();
+            e.preventDefault();
+
+            _this.create();
+          });
         }
 
       }
@@ -119,16 +247,11 @@
 
 
     $(function(){
-        
-    
-
-
-      new layer('111', {
-        preventScroll: true
+      
+      new layer('button', {
+        preventScroll: true,
+        content: '.con'
       });
-
-
-
 
     });
 
