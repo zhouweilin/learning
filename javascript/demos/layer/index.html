@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"> 
-    <title>mlib-test</title>
-    <link rel="stylesheet" href="./css/animate.min.css">
+    <title>弹窗插件</title>
+   
     <style>
         *{padding:0;margin:0;}
         html{height:100%;}
@@ -50,7 +50,9 @@
 
     </style>  
 <body> 
-    
+    <div style="height:100px;padding-top:50px;">
+      <button>打开弹框</button>
+    </div>
     <pre>
       调用方式：
       new layer(element, options);
@@ -136,7 +138,7 @@
     <div class="con">
       this is in the page!
     </div>
-    <button>打开弹框</button>
+    
     <script>
         var i = 0;
         while(i <  50){
@@ -148,33 +150,20 @@
 
 
 
-    <script type="text/javascript" src="./js/jquery-1.12.js"></script>
-    <script type="text/javascript" src="./js/plugins/dev/layer.js"></script> 
-    <!-- <script type="text/javascript" src="./js/zepto.js"></script> -->
-    <!-- <script type="text/javascript" src="./js/plugins/dev/jquery.validate.js"></script> -->
-    <!-- <script type="text/javascript" src="./js/mlib.js"></script> -->
+    <script type="text/javascript" src="jquery-1.12.js"></script>
+    <script type="text/javascript" src="layer.js"></script> 
+   
     <script>
-  
+        $(function(){
+          new layer('button', {
+              preventScroll: true,
+              content: '.con',
+              animate: 'flip',
+              onShow: function(lay){
 
-    
-
-
-    $(function(){
-      
-      new layer('button', {
-
-          preventScroll: true,
-          content: '.con',
-          animate: 'flip',
-          onShow: function(lay){
-
-          }
-
-      });
-
-    });
-
-
+              }
+          });
+        });
 
     </script>
 </body>
