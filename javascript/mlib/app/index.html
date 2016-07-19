@@ -12,33 +12,45 @@
 
         .layer-wrap{position:fixed;width:100%;height:100%;left:0;top:0;}
         .layer-mask{background:#000;opacity:.5;filter:alpha(opacity:50);position:absolute;width:100%;height:100%;}
-        .layer-container{position:absolute;left:50%;top:50%;background:#fff;opacity:0;
-            transition:transform .4s, opacity .4s;
-            -ms-transition:transform .4s, opacity .4s;
-            -moz-transition: transform .4s, opacity .4s;
-            transform:scale(0);-ms-transform:scale(0);-moz-transform:scale(0);}
+        .layer-container{position:absolute;left:50%;top:50%;background:#fff;}
+        .scale-init{
+          transition: transform .4s, opacity .4s; 
+          -ms-transition: transform .4s, opacity .4s;
+          -moz-transition: transform .4s, opacity .4s;
+          -webkit-transition: transform .4s, opacity .4s;
+          transform: scale(0);
+          -ms-transform: scale(0);
+          -moz-transform: scale(0);
+          opacity: 0;
+        }
+
+        .flip-init{
+          transition:transform .6s, opacity .6s;
+          -ms-transition:transform .6s, opacity .6s;
+          -moz-transition:transform .6s, opacity .6s;
+          -webkit-transition:transform .6s, opacity .6s;
+          
+          transform-style:preserve-3d;
+          -ms-transform-style:preserve-3d;
+          -moz-transform-style:preserve-3d;
+          -webkit-transform-style:preserve-3d;
+
+          transform:rotateX(90deg);
+          -ms-transform:rotateX(90deg);
+          -moz-transform:rotateX(90deg);
+          -webkit-transform:rotateX(90deg);
+
+          opacity:0;
+        }
+        
         body{height:2000px;}
 
-        
     </style>  
 <body> 
     
-  
-    <div class="test">
-      
-    </div>
     
-    <div class="layer1">
-        layer1
-        <div class="layer1-sub1">layer1-sub1</div>
-
-    </div>
-
-    <div class="layer2"> 
-        layer1
-        <div class="layer2-sub1">layer2-sub1</div>          
-    </div>
-    <span class="layer3"></span>
+   
+  
 
     <div class="con">
       this is in the page!
@@ -58,6 +70,8 @@
     <!-- <script type="text/javascript" src="./js/plugins/dev/jquery.validate.js"></script> -->
     <!-- <script type="text/javascript" src="./js/mlib.js"></script> -->
     <script>
+  
+
     (function(factory){
       if(typeof define === 'function'){
         define(['jquery'], factory);
@@ -77,9 +91,9 @@
           eventType: 'click',
           onShow: null,
           onDestroyed: null,
-          extraClass: null
+          extraClass: null,
+          animate: 'flip'
       };
-
 
       function Layer(trigger, options){
         this._body = $('body');
@@ -146,13 +160,32 @@
           this.close = this.container.find('.layer-close');
           this.content = this.container.find('.layer-content');
 
+         
+          this.anims[this.opts.animate + 'Init'].call(this, this.container);
+         
           _wrap.fadeIn(400, function(){
              _this.setContainerStyle();
-          }); 
+          });  
 
           this._body.append(_wrap);      
         },
 
+        setcss3tyle:function(element, style){
+            $.each(style, function(key, val){
+                var skey = key.charAt(0).toUpperCase().concat(key.substr(1)),
+                    ms = 'ms' + skey,
+                    moz = 'moz' + skey,
+                    webkit = 'webkit' + skey;
+                    
+                $.extend(style, {
+                  ms: val,
+                  moz: val,
+                  webkit: val
+                });
+            });
+
+            element.css(style);
+        },
         setContainerStyle: function(){
           var opts = this.opts, _this = this;
 
@@ -176,34 +209,28 @@
           }
 
           setTimeout(function(){
-            _this.container.css({
-              transform: 'scale(1)',
-              msTransform: 'scale(1)',
-              mozTransform: 'scale(1)',
-              opacity: 1
-            });
+            
+            _this.anims[_this.opts.animate + 'Anim'].call(_this, _this.container);
 
             if(typeof opts.onShow == 'function'){
-              opts.onShow.call(_this, _this);
+                opts.onShow.call(_this, _this);
             }
+  
           }, 0);
-
         },
 
         preventScroll: function(){
           if(this.opts.preventScroll){
             this._body.css('overflow', 'hidden');
           }
-        }, 
+        },
 
         destroy: function(){
           var _this = this;
-        
-            _this.container.css({
-              transform: 'scale(0.1)',
-              opacity: 0
-            });
+            
+            this.anims[this.opts.animate + 'Remove'].call(this, this.container);
 
+            
             setTimeout(function(){
               _this.wrap.fadeOut(function(){
                 _this.container.remove();
@@ -241,6 +268,67 @@
         }
 
       }
+
+      Layer.prototype.anims = {
+          //scale
+          scaleInit: function(container){
+              // container.addClass('scale-init');
+              var styles = ['transform .4s, opacity .4s', 'scale(0)'];
+
+              this.setcss3tyle(container, {
+                transform: styles[1],
+                transition: styles[0]
+              });
+          },
+          scaleAnim: function(container){
+              container.css({ 
+                opacity: 1
+              });
+
+              this.setcss3tyle(container, {
+                transform: 'scale(1)'
+              });
+          },
+          scaleRemove: function(container){
+              this.setcss3tyle(container, {
+                transform: 'scale(0.1)'
+              });
+              container.css({
+                opacity: 0
+              });
+          },
+
+          //flip
+          flipInit: function(container){
+    
+            this.setcss3tyle(container.parent(), {
+              perspective: '800px'
+            });
+
+            container.addClass('flip-init');
+          },
+
+          flipAnim: function(container){
+  
+            this.setcss3tyle(container, {
+              transform: 'rotateX(0)'
+            });
+
+            container.css({opacity: 1});
+          },
+          flipRemove: function(container){
+           
+            this.setcss3tyle(container, {
+              transform: 'rotateX(90deg)'
+            });
+
+            container.css({
+              opacity: 0
+            });
+
+          }
+
+        }
       
       window.layer = Layer;
     });
@@ -250,7 +338,11 @@
       
       new layer('button', {
         preventScroll: true,
-        content: '.con'
+        content: '.con',
+        animate: 'flip',
+        onShow: function(lay){
+         
+        }
       });
 
     });
