@@ -1,21 +1,12 @@
-(function(factory){
-  if(typeof define === 'function'){
-    define(['jquery'], factory);
-  }else if(typeof module === 'object' && module.exports){
-    module.exports = factory(require('jquery'));
-  }else{
-    factory(jQuery);
-  }
-})(function($){
+(function($){
 
   var defaults = {
-      width: 'auto',                  //内容容器(layer-container)的宽度
-      height: 'auto',                 //内容容器的高度
+      width: 200,                     //内容容器(layer-container)的宽度
+      height: 200,                    //内容容器的高度
       left: null,                     //内容容器的left值, 如果设置，必须同时设置top值，否则会居中定位 
       top: null,                      //内容容器的top值, 如果设置，必须同时设置left值，否则会居中定位  
       preventScroll: false,           //为false 则显示滚动条
       eventType: 'click',             //触发弹窗的事件类型
-      onBeforeInit: null,
       onShow: null,                   //弹窗显示后的回调
       onDestroyed: null,              //弹窗销毁后的回调
       extraClass: null,               //添加到 (layer-wrap) 上的类名
@@ -86,11 +77,6 @@
       this.container = _wrap.find('.layer-container');
       this.close = this.container.find('.layer-close');
       this.content = this.container.find('.layer-content');
-      this.content.append(this.con);
-
-      if(_this.opts.width === 'auto'){
-        _this.opts.width = _this.content.width();
-      }
 
      
       this.anims[this.opts.animate + 'Init'].call(this, this.container);
@@ -124,11 +110,7 @@
       this.container.css({
         width: opts.width,
         height: opts.height
-      });
-
-      if(_this.opts.height === 'auto'){
-        _this.opts.height = _this.content.height();
-      }
+      }).find('.layer-content').append(this.con);
 
       if(!(opts.left === null) && !(opts.top === null)){
         this.container.css({
@@ -203,9 +185,6 @@
         e.stopPropagation();
         e.preventDefault();
 
-        if(_this.opts.onBeforeInit && (typeof _this.opts.onBeforeInit === 'function')){
-          _this.opts.onBeforeInit.call(_this, $(this));
-        }
         _this.create();
       });
     }
@@ -274,4 +253,4 @@
     }
   
   window.layer = Layer;
-});
+})(Zepto);

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"> 
-    <title>mlib-test</title>
-    <link rel="stylesheet" href="./css/animate.min.css">
+    <title>弹窗插件</title>
+   
     <style>
         *{padding:0;margin:0;}
         html{height:100%;}
@@ -50,131 +50,28 @@
 
     </style>  
 <body> 
-    
-    <pre>
-      调用方式：
-      new layer(element, options);
-      element: 要触发弹窗的元素，可以在options里面 选填 触发事件类型
-
-      options: {                        //所有参数均为选填
-
-        width: number,                  //内容容器(layer-container)的宽度 默认[200]
-        height: number,                 //内容容器的高度 [200]
-        left: number,                   //内容容器的left值, 如果设置，必须同时设置top值，否则会居中定位 
-        top: number,                    //内容容器的top值, 如果设置，必须同时设置left值，否则会居中定位  
-        preventScroll: boolean,         //为false 则显示滚动条, 为true 则阻止页面的滚动，不显示页面滚动条 默认为[false]
-        eventType: 'click',             //触发弹窗的事件类型 默认['click']
-        onShow: null,                   //弹窗显示后的回调
-        onDestroyed: null,              //弹窗销毁后的回调
-        extraClass: null,               //添加到 (layer-wrap) 上的类名
-        animate: 'scale'                //动画类型[scale/flip] 默认[scale]
-        content: selector/string/dom    //放进layer-container里面的内容 可以是选择器、字符串、用jquery生成的
-
-      }
-
-      默认样式：
-
-      /* layer */
-      .layer-wrap{position:fixed;width:100%;height:100%;left:0;top:0;}
-      .layer-mask{background:#000;opacity:.5;filter:alpha(opacity:50);position:absolute;width:100%;height:100%;}
-      .layer-container{position:absolute;left:50%;top:50%;background:#fff;}
-      .scale-init{
-        transition: transform .4s, opacity .4s; 
-        -ms-transition: transform .4s, opacity .4s;
-        -moz-transition: transform .4s, opacity .4s;
-        -webkit-transition: transform .4s, opacity .4s;
-        transform: scale(0);
-        -ms-transform: scale(0);
-        -moz-transform: scale(0);
-        opacity: 0;
-      }
-
-      .flip-init{
-        transition:transform .6s, opacity .6s;
-        -ms-transition:transform .6s, opacity .6s;
-        -moz-transition:transform .6s, opacity .6s;
-        -webkit-transition:transform .6s, opacity .6s;
-        
-        transform-style:preserve-3d;
-        -ms-transform-style:preserve-3d;
-        -moz-transform-style:preserve-3d;
-        -webkit-transform-style:preserve-3d;
-
-        transform:rotateX(90deg);
-        -ms-transform:rotateX(90deg);
-        -moz-transform:rotateX(90deg);
-        -webkit-transform:rotateX(90deg);
-
-        opacity:0;
-      }
-      /*-- end layer --*/
-      
-      可以自定义 关闭按的样式，关闭按钮没有写默认样式，上面的默认样式是必须的，请复制到自己的样式表
-
-      例如：
-      $(function(){
-        
-        new layer('button', {
-
-            preventScroll: true,
-            content: '.con',
-            animate: 'flip',
-            onShow: function(lay){
-
-            }
-
-        });
-
-      });
-    
-
-    end ================================================
-    </pre>
-   
-  
+    <div style="height:100px;padding-top:50px;">
+      <button>打开弹框</button>
+    </div>
 
     <div class="con">
       this is in the page!
     </div>
-    <button>打开弹框</button>
-    <script>
-        var i = 0;
-        while(i <  50){
-          document.write('<p>' + i + '</p>');
-          i++;
-        }    
-    </script>
-
-
-
-
-    <script type="text/javascript" src="./js/jquery-1.12.js"></script>
-    <script type="text/javascript" src="./js/plugins/dev/layer.js"></script> 
-    <!-- <script type="text/javascript" src="./js/zepto.js"></script> -->
-    <!-- <script type="text/javascript" src="./js/plugins/dev/jquery.validate.js"></script> -->
-    <!-- <script type="text/javascript" src="./js/mlib.js"></script> -->
-    <script>
-  
-
     
+    <script type="text/javascript" src="js/zepto.js"></script>
+    <script type="text/javascript" src="js/plugins/dev/zepto-layer.js"></script> 
+   
+    <script>
+        $(function(){
+          new layer('button', {
+              preventScroll: true,
+              content: '.con',
+              animate: 'flip',
+              onShow: function(lay){
 
-
-    $(function(){
-      
-      new layer('button', {
-
-          preventScroll: true,
-          content: '.con',
-          animate: 'flip',
-          onShow: function(lay){
-
-          }
-
-      });
-
-    });
-
-
+              }
+          });
+        });
 
     </script>
 </body>
