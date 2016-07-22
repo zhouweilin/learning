@@ -80,7 +80,7 @@
 
 			return newObj;
 		}
-	};
+	}
 
 	function mergeJson(){
 		var newObj = {};
@@ -90,6 +90,20 @@
 			});
 		});
 		return newObj;
+	}
+
+
+
+	function isMobile(){
+		var ua = navigator.userAgent,
+			mobile = false,
+			identifiers = ['iPhone', 'Android', 'Windows Phone', 'BB10', 'KFAPWI'];
+		for(var i = 0, ident; ident = identifiers[i ++];){
+			if(ua.indexOf(ident) > -1){
+				mobile = true;
+			}
+		}
+		return mobile;
 	}
 
 	/*+++++++++++++++++++
@@ -106,6 +120,7 @@
 		isElement: isElement,
 		isJson: isJson,
 		mergeJson: mergeJson,
+		isMobile: isMobile,
 
 		getStyle: function(ele){
 					return  ele.currentStyle ? ele.currentStyle : getComputedStyle(ele, null);
@@ -151,6 +166,12 @@
 		},
 		drag: function(targetElement, options){
 			var _this = this,
+			    isMob = _this.isMobile(),
+				eventType = {
+		        	start: (isMob ? 'touchstart' : 'mousedown'),
+		        	move: (isMob ? 'touchmove' : 'mousemove'),
+		        	end: (isMob ? 'touchend' : 'mouseup') 
+				},
 			    pos = {
 			      startX: null,
 			      startY: null, 
@@ -160,12 +181,12 @@
 			      endY: null
 			    };
 
-			this.on(targetElement, 'touchstart', touchStart);
+			this.on(targetElement, eventType.start, touchStart);
 
 			function touchStart(event){
 			    event.preventDefault();
 
-			    var touch = event.changedTouches[0],
+			    var touch =  touch = isMob ? event.changedTouches[0] : event,
 			        left = targetElement.offsetLeft,
 			        top = targetElement.offsetTop;
 			    
@@ -176,14 +197,14 @@
 			      options.onTouchStart(event, pos);
 			    }
 			    
-			    _this.on(document, 'touchmove', touchMove);      
-			    _this.on(document, 'touchend', touchEnd);
+			    _this.on(document, eventType.move, touchMove);      
+			    _this.on(document, eventType.end, touchEnd);
 			}
 			
 			function touchMove(event){
 			  event.preventDefault();
 
-			  var touch = event.changedTouches[0];
+			  var touch = isMob ? event.changedTouches[0] : event;
 			  pos.currX = touch.pageX - pos.startX;
 			  pos.currY = touch.pageY - pos.startY;
 
@@ -196,15 +217,15 @@
 			}
 
 			function touchEnd(event){
-			  var touch = event.changedTouches[0];
+			  var touch =  touch = isMob ? event.changedTouches[0] : event;
 			  pos.endX = touch.pageX;
 			  pos.endY = touch.pageY;
 
 			  if(options && !!(typeof options.onTouchEnd === 'function')){
 			    options.onTouchEnd(event, pos);
 			  }
-			  _this.off(document, 'touchmove', touchMove);
-			  _this.off(document, 'touchend', touchEnd);
+			  _this.off(document, eventType.move, touchMove);
+			  _this.off(document, eventType.end, touchEnd);
 			}
 		}
 	};
@@ -216,9 +237,12 @@
 		event: event
 	}
 
-	mlib = extend(mlib, base, util, coll, event);
+	mlib = extend(mlib, base, util, coll, events);
 	win.mlib = mlib;
 
 	return mlib;
+
+
+
 
 })(window);

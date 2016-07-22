@@ -10,69 +10,28 @@
         html{height:100%;}
         body{height:100%;}
         
-
-        /* layer */
-        .layer-wrap{position:fixed;width:100%;height:100%;left:0;top:0;}
-        .layer-mask{background:#000;opacity:.5;filter:alpha(opacity:50);position:absolute;width:100%;height:100%;}
-        .layer-container{position:absolute;left:50%;top:50%;background:#fff;}
-        .scale-init{
-          transition: transform .4s, opacity .4s; 
-          -ms-transition: transform .4s, opacity .4s;
-          -moz-transition: transform .4s, opacity .4s;
-          -webkit-transition: transform .4s, opacity .4s;
-          transform: scale(0);
-          -ms-transform: scale(0);
-          -moz-transform: scale(0);
-          opacity: 0;
-        }
-
-        .flip-init{
-          transition:transform .6s, opacity .6s;
-          -ms-transition:transform .6s, opacity .6s;
-          -moz-transition:transform .6s, opacity .6s;
-          -webkit-transition:transform .6s, opacity .6s;
-          
-          transform-style:preserve-3d;
-          -ms-transform-style:preserve-3d;
-          -moz-transform-style:preserve-3d;
-          -webkit-transform-style:preserve-3d;
-
-          transform:rotateX(90deg);
-          -ms-transform:rotateX(90deg);
-          -moz-transform:rotateX(90deg);
-          -webkit-transform:rotateX(90deg);
-
-          opacity:0;
-        }
-        /*-- end layer --*/
-        
-        body{height:2000px;}
+        .drag{height:100px;width:100px;border:1px solid green; position:absolute;}
+        .text{color:#fff;font-size:140px;background:#06b906;width:460px;margin:100px auto;text-align:center;line-height:240px;}
 
     </style>  
 <body> 
-    <div style="height:100px;padding-top:50px;">
-      <button>打开弹框</button>
-    </div>
+    
 
-    <div class="con">
-      this is in the page!
-    </div>
+    <div class="drag"></div> 
+
+    <div class="text">Layer</div>    
+
     
     <script type="text/javascript" src="js/zepto.js"></script>
-    <script type="text/javascript" src="js/plugins/dev/zepto-layer.js"></script> 
+    
    
     <script>
-        $(function(){
-          new layer('button', {
-              preventScroll: true,
-              content: '.con',
-              animate: 'flip',
-              onShow: function(lay){
+  
 
-              }
-          });
-        });
-
+       
+       $(function(){
+          drag($('.drag'), {})
+       })
     </script>
 </body>
 </html>
