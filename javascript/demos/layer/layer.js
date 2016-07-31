@@ -74,7 +74,7 @@
                       '</div>' +
                   '</div>'),
           _this = this;
-
+ 
       if(this.opts.extraClass && (typeof extraClass === 'string')){
           _wrap.addClass(this.opts.extraClass);
       }
