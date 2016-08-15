@@ -37,6 +37,7 @@ Rule One: 工作时间只思考工作的事情
 * [mobileTech-移动端开发所资源/技巧](https://github.com/jtyjty99999/mobileTech)
 * [移动web资源整理](http://www.cnblogs.com/PeunZhang/p/3407453.html)
 * [MVC，MVP 和 MVVM 的图示](http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html)
+* [淘宝前后端分离](http://frontenddev.org/column/taobao-full-stack-development/)
 
 ###web性能
 * [Web性能优化系列（1）：Web性能优化分析](http://web.jobbole.com/82297/)
