@@ -143,4 +143,23 @@ function showItem(arr){
 console.log('99999999999'.replace(/\d{1,3}(?=(\d{3})+$)/g, '$&,'));
 console.log('123123211312.333333'.replace(/(?=(?!^)(?:\d{3})+(?:\.|$))(\d{3}(\.\d+$)?)/g, ',$1'));
 ```
-
+10 格式化时间
+```javascript
+//获取 xxxx-xx-xx xx:xx:xx格式的时间
+//date = new Date(time); time 为要转换的日期的时间戳
+function   formatDate(now){
+   var year = now.getFullYear(),
+       month = now.getMonth() + 1,
+       date = now.getDate(),
+       hour = now.getHours(),
+       minute = now.getMinutes(),
+       second = now.getSeconds();
+       month = month > 10 ? month : '0' + month;
+       date = date > 10 ? date : '0' + date;
+       hour = hour > 10 ? hour : '0' + hour;
+       minute = minute > 10 ? minute : '0' + minute;
+       second = second > 10 ? second : '0' + second;
+   return   year + "-" + month + "-" + date
+            + " " + hour + ":" + minute + ":" + second;
+}
+```
