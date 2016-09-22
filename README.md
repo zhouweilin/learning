@@ -1,6 +1,5 @@
 # learning
 Learning note about web techs   
-Rule One: 工作时间只思考工作的事情
 
 ###基础知识
 * [关于js的较冷的知识点](http://blog.csdn.net/cwzhsi/article/details/47806123)
