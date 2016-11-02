@@ -54,7 +54,7 @@ function getNthFibonacci(num){
     uname : '^[\u4E00-\u9FA5\a-zA-Z]{2,15}$',
     cell : '^(13[0-9]{9}|15[012356789][0-9]{8}|18[0-9][0-9]{8}|147[0-9]{8}|17[0678][0-9]{8})$',
     tel : '^(0\\d{2,3})?(\\d{7,8})$',
-    phone : '^(13[0-9]{9}|15[012356789][0-9]{8}|18[0-9][0-9]{8}|147[0-9]{8}|17[0678][0-9]{8}|(0\\d{2,3})?(\\d{7,8}))$',
+    phone : `^(13[0-9]{9}|15[012356789][0-9]{8}|18[0-9][0-9]{8}|147[0-9]{8}|17[0678][0-9]{8}|(0\\d{2,3})?(\\d{7,8}))$`,
     email : '^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$',
     hex : '^([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$',
     date : '^\\d{4}-\\d{2}-\\d{2}$',
@@ -62,4 +62,42 @@ function getNthFibonacci(num){
     integer : '^\\d+$',
     chinese : '^[\\u4E00-\\u9FA5]+$'
   }
+```
+3. 由 1、2、3、4 组成的没有重复字的三位数 有多少，是哪些
+```javascript
+function nums(){
+    var arr = [1, 2, 3, 4],
+        items = 1;
+    arr.forEach(i => {
+        arr.forEach(j => {
+            arr.forEach(k => {
+                if(i != j && j != k && i != k){
+                    console.log(`${items}: ${i}${j}${k}`);
+                    items ++;
+                }
+            });
+        })
+    });
+}
+```
+4. 冒泡排序，从小到大
+```javascript
+sort(){
+    let arr = Array.from(arguments),
+        len = arr.length;
+    for(let i = len - 1; i > 1; i -- ){
+        for(let j = 0; j < i; j ++ ){
+            if(arr[j] > arr[j + 1]){
+                swap(arr, j, j + 1);
+            }
+        }
+    }
+}
+
+swap(arr, prev, next){
+    let temp = arr[prev];
+    arr[prev] = arr[next];
+    arr[next] = temp;
+    console.log(arr);
+}
 ```
