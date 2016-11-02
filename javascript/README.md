@@ -63,6 +63,7 @@ function getNthFibonacci(num){
     chinese : '^[\\u4E00-\\u9FA5]+$'
   }
 ```
+
 3. 由 1、2、3、4 组成的没有重复字的三位数 有多少，是哪些
 ```javascript
 function nums(){
@@ -80,6 +81,7 @@ function nums(){
     });
 }
 ```
+
 4. 冒泡排序，从小到大
 ```javascript
 sort(){
