@@ -29,9 +29,7 @@ var a = 5;
 
 ```
 
-*这应该是js里面没有加分号最危险的陷阱了*
-
-1. Fibonacci algorithm
+* Fibonacci algorithm
 ```javascript
 function getNthFibonacci(num){
   if(num < 2) return 1;
@@ -48,7 +46,7 @@ function getNthFibonacci(num){
 }
 ```
 
-2. Frequently used regular express
+* Frequently used regular express
 ```javascript
  regex = {
     uname : '^[\u4E00-\u9FA5\a-zA-Z]{2,15}$',
@@ -64,7 +62,7 @@ function getNthFibonacci(num){
   }
 ```
 
-3. 由 1、2、3、4 组成的没有重复字的三位数 有多少，是哪些
+* 由 1、2、3、4 组成的没有重复字的三位数 有多少，是哪些
 ```javascript
 function nums(){
     var arr = [1, 2, 3, 4],
@@ -82,7 +80,7 @@ function nums(){
 }
 ```
 
-4. 冒泡排序，从小到大
+* 冒泡排序，从小到大
 ```javascript
 sort(){
     let arr = Array.from(arguments),
