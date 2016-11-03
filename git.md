@@ -12,3 +12,19 @@ git remote add [originName] user@server:/path/to/repo.git
 git push -u [originName] master 
 ```
 远程裸仓库添加成功后，就可以把本地的仓库推送到远程的仓库中，`-u` 可以把本地master 和 远程 master分支关联起来，以便在以后的推送中免去分支名称
+### git推送到服务器的git仓库并自动同步到站点目录
+在服务器hooks目录下，添加一个post-receive文件，并添加相关语句，赋予post-receive可执行权限，使其可以执行里面的shell脚本    
+使用cat语句如下：
+```
+cat > post-receive <<EOF
+>#!/bin/bash
+>git --work-tree=/path/to/webroot checkout -f
+>EOF
+
+$ chmod +x post-receive   //赋予post-receive可执行权限
+```
+使用vim则直接在post-receive文件中输入下面内容：
+```bash
+#!/bin/bash
+git --work-tree=/path/to/webroot  checkout -f
+```
