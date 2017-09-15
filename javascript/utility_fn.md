@@ -8,4 +8,19 @@ function getRandomInt(min, max) {
 function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+// 3. 产生指定数量不重复的数
+/**
+* @param
+*/
+function deDouble (min , max, count) {
+    const arr = []
+    while(arr.length < count) {
+        let num = getRandomIntInclusive(min, max)
+        if (!arr.includs(num)) {
+            arr.push(num)
+        }
+    }
+    return arr
+}
 ```
