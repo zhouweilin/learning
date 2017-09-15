@@ -10,8 +10,12 @@ function getRandomIntInclusive(min, max) {
 }
 
 // 3. 产生指定数量不重复的数
+// 还可以考虑用Set
 /**
-* @param
+* @param {Int} min 随机数的最小值
+* @param {Int} max 随机数的最大值
+* @param {Int} count 要产生的不重复数的数量
+* @return {Array} 返回有不重复数数的数组
 */
 function deDouble (min , max, count) {
     const arr = []
